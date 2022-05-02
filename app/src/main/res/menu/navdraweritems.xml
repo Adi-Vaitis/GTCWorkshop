@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navi_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"
+
+            />
+        <item
+            android:id="@+id/navi_services"
+            android:icon="@drawable/ic_baseline_directions_car_24"
+            android:title="Services"
+
+            />
+        <item
+            android:id="@+id/navi_reservations"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="Reservations" />
+        <item
+            android:id="@+id/navi_stream"
+            android:icon="@drawable/ic_baseline_video_call_24"
+            android:title="Live Stream" />
+        <item
+            android:id="@+id/navi_contactus"
+            android:icon="@drawable/ic_baseline_message_24"
+            android:title="Contact Us" />
+    </group>
+
+    <item
+
+        android:title="Account">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/navi_login"
+                    android:icon="@drawable/ic_baseline_login_24"
+                    android:title="Log In" />
+                <item
+                    android:id="@+id/navi_accsettings"
+                    android:icon="@drawable/ic_baseline_settings_24"
+                    android:title="Account Settings" />
+                <item
+                    android:id="@+id/navi_logout"
+                    android:icon="@drawable/ic_baseline_exit_to_app_24"
+                    android:title="Log Out" />
+            </group>
+        </menu>
+    </item>
+
+</menu>
