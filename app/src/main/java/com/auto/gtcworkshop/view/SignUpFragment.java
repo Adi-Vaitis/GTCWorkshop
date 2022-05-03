@@ -106,7 +106,7 @@ public class SignUpFragment extends Fragment {
                     return;
 
                 }
-                viewModel.register(email, password);
+                viewModel.register(fullName, email, password, phone);
 
 
             }

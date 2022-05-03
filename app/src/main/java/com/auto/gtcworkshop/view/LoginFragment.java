@@ -98,7 +98,7 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
                     return;
                 }
 
-                viewModel.register(email, password);
+                viewModel.login(email, password);
 
 
             }
