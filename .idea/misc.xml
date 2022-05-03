@@ -23,6 +23,20 @@
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/navdrawer.xml" value="0.358695652173913" />
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/navdrawerheader.xml" value="0.358695652173913" />
+=======
+        <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/menu/navdraweritems.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/activity_account.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/activity_login.xml" value="0.41041666666666665" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_account.xml" value="0.22" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_account2.xml" value="0.5451282051282051" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_bookings.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_login.xml" value="0.28937007874015747" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_login2.xml" value="0.55" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_register.xml" value="0.42913385826771655" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/fragment_sign_up.xml" value="0.55" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/navdrawer.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/navdrawerheader.xml" value="0.17314814814814813" />
       </map>
     </option>
   </component>
