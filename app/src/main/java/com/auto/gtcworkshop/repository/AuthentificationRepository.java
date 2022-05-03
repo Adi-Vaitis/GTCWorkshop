@@ -4,6 +4,7 @@ import android.app.Application;
 import android.text.TextUtils;
 import android.widget.Toast;
 import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -23,13 +24,10 @@ public class AuthentificationRepository {
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
     }
-    public MutableLiveData<FirebaseUser> getFirebaseMutableLiveData()
-    {return firebaseUserMutableLiveData;}
 
     public MutableLiveData<Boolean> getUserLoggedMutableLiveData() {
         return userLoggedMutableLiveData;
     }
-
 
 
     public AuthentificationRepository(Application application) {
@@ -51,7 +49,7 @@ public class AuthentificationRepository {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                    Toast.makeText(application, "Account Created" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(application, "Account Created", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -69,15 +67,16 @@ public class AuthentificationRepository {
                     firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
                     Toast.makeText(application, "Logged In", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();}
+                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
 
-public void logout(){
+    public void logout() {
         auth.signOut();
         userLoggedMutableLiveData.postValue(true);
-}
+    }
 
 }
