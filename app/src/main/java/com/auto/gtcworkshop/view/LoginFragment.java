@@ -99,6 +99,8 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
                 }
 
                 viewModel.register((Activity) getView().getContext(), email, password);
+=======
+                viewModel.login(email, password);
 
 
             }
