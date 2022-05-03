@@ -1,6 +1,5 @@
 package com.auto.gtcworkshop.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.viewmodel.AuthViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment {
         private AuthViewModel viewModel;
         private NavController navController;
 
-      /*  @Override
+        @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
@@ -98,9 +98,7 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
                     return;
                 }
 
-                viewModel.register((Activity) getView().getContext(), email, password);
-=======
-                viewModel.login(email, password);
+                viewModel.register(email, password);
 
 
             }
@@ -116,7 +114,4 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
-}
-
-       */
 }}
