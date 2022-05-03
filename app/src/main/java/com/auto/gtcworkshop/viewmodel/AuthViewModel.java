@@ -1,6 +1,8 @@
 package com.auto.gtcworkshop.viewmodel;
 
+import android.app.Activity;
 import android.app.Application;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -12,35 +14,34 @@ import com.google.firebase.auth.FirebaseUser;
 public class AuthViewModel extends AndroidViewModel {
 
     private AuthentificationRepository repository;
-    private MutableLiveData<FirebaseUser> userData;
-    private MutableLiveData<Boolean> loggedStatus;
+  //  private MutableLiveData<FirebaseUser> userData;
+ //   private MutableLiveData<Boolean> loggedStatus;
 
-    public MutableLiveData<FirebaseUser> getUserData() {
-        return userData;
-    }
+ //   public MutableLiveData<FirebaseUser> getUserData() {
+   //     return userData;
+ //   }
 
-    public MutableLiveData<Boolean> getLoggedstatus() {
-        return loggedStatus;
-    }
+ //   public MutableLiveData<Boolean> getLoggedstatus() {
+ //       return loggedStatus;
+ //   }
 
-    public AuthViewModel(@NonNull Application application) {
+    public AuthViewModel(Application application) {
         super(application);
-        repository = new AuthentificationRepository(application);
-        userData = repository.getFirebaseUserMutableLiveData();
-        loggedStatus = repository.getUserLoggedMutableLiveData();
+        repository = AuthentificationRepository.getInstance(application);
+      //  userData = repository.getFirebaseUserMutableLiveData();
+      //  loggedStatus = repository.getUserLoggedMutableLiveData();
     }
 
-    public void register(String email, String password) {
-        repository.register(email, password);
+    public void register(Activity context, String email, String password) {
+        repository.registerAccount(context, email, password);
     }
 
-    public void login(String email, String password) {
-        repository.login(email, password);
+    public void setSignIn(Boolean signIn){
+        repository.setSignIn(signIn);
     }
 
-    public void logout() {
-        repository.logout();
+    public void forgotPass(View view){
+        repository.forgotPassword(view);
     }
-
 
 }
