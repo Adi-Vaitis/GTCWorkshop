@@ -27,8 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
 
-    public class SignUpFragment extends Fragment {
-
         public static final int GOOGLE_SIGN_IN_CODE = 1005;
         public static final int REQUEST_CODE = 10005;
         EditText lEmail, lPassword;
@@ -114,4 +112,4 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
-}}
+}
