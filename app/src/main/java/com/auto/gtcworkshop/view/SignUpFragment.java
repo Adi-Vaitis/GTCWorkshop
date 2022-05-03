@@ -1,5 +1,6 @@
 package com.auto.gtcworkshop.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpFragment extends Fragment {
 
-    private EditText rFullName, rEmail, rPassword, rPhone;
+   /* private EditText rFullName, rEmail, rPassword, rPhone;
     private TextView rtocreate;
     private Button rCreateBtn;
     private ProgressBar progressBar;
@@ -39,7 +40,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
         viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
@@ -116,4 +117,71 @@ public class SignUpFragment extends Fragment {
 
     }
 
+    */
+
+    private AuthViewModel authViewModel;
+
+    EditText fullName;
+    EditText email;
+    EditText phoneNo;
+    EditText password;
+    Button registerButton;
+    Button toLogInButton;
+    TextView forgotPass;
+
+    public static SignUpFragment newInstance() {
+        return new SignUpFragment();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        fullName = view.findViewById(R.id.fullname);
+        email = view.findViewById(R.id.email);
+        phoneNo = view.findViewById(R.id.phone);
+        password = view.findViewById(R.id.paswword);
+        registerButton = view.findViewById(R.id.createbtn);
+        toLogInButton = view.findViewById(R.id.tologin);
+        forgotPass = view.findViewById(R.id.forgetpass);
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+
+        if (registerButton != null) {
+            registerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (getView() != null) {
+                        authViewModel.register((Activity) getView().getContext(), email.getText().toString(),
+                                password.getText().toString());
+                    }
+                }
+            });
+        }
+        if(toLogInButton != null)
+        {
+            toLogInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    authViewModel.setSignIn(true);
+                }
+            });
+        }
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                authViewModel.forgotPass(view);
+            }
+        });
+    }
 }

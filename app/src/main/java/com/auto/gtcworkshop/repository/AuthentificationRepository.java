@@ -1,5 +1,9 @@
 package com.auto.gtcworkshop.repository;
 
+import android.app.Activity;
+import android.app.Application;
+import android.text.TextUtils;
+import android.view.View;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
@@ -7,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,13 +30,83 @@ import java.util.Map;
 
 public class AuthentificationRepository {
     private Application application;
+    private static AuthentificationRepository instance;
+    private static AuthentificationDAO authentificationDAO;
+   // private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
+   // private MutableLiveData<Boolean> userLoggedMutableLiveData;
+  //  private FirebaseAuth auth;
+
+    private AuthentificationRepository(Application app){
+        authentificationDAO = AuthentificationDAO.getInstance(app);
+    }
+
+    public LiveData<Boolean> getSignIn()
+    {
+        return authentificationDAO.signIn();
+    }
+
+    public void setSignIn(Boolean signIn) {
+        authentificationDAO.setSignIn(signIn);
+    }
+
+    public LiveData<String> getAuthenticationMessage()
+    {
+        return authentificationDAO.getAuthenticationMessage();
+    }
+
+    public LiveData<Boolean> getProgressBar()
+    {
+        return authentificationDAO.getProgressBar();
+    }
+
+    public LiveData<FirebaseUser> getCurrentUser() {
+        return authentificationDAO.getCurrentUser();
+    }
+
+    public LiveData<Boolean> getSignOut() {
+        return authentificationDAO.getSignOut();
+    }
+
+    public void signOut() {
+        authentificationDAO.signOut();
+    }
+
+    public void registerAccount(Activity activity, String email, String password) {
+        authentificationDAO.registerAccount(activity,email,password);
+    }
+
+    public void loginAccount(Activity activity, String email, String password)
+    {
+        authentificationDAO.loginAccount(activity,email,password);
+    }
+
+    public void forgotPassword(View view)
+    {
+        authentificationDAO.forgotPassword(view);
+    }
+
+    public MutableLiveData<Boolean> verifiedEmail()
+    {
+        return authentificationDAO.verifiedEmail();
+    }
+
+    public void verifyEmail(){
+        authentificationDAO.verifyEmail();
+    }
+
+    public static AuthentificationRepository getInstance(Application app){
+        if(instance == null){
+            instance = new AuthentificationRepository(app);
+        }
+        return instance;
+    }
     private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
     private MutableLiveData<Boolean> userLoggedMutableLiveData;
     private FirebaseAuth fAauth;
     FirebaseFirestore fStore;
     String userID;
 
-    public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
+  /*  public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
     }
 
@@ -110,5 +185,6 @@ public class AuthentificationRepository {
         fAauth.signOut();
         userLoggedMutableLiveData.postValue(true);
     }
+*/
 
 }
