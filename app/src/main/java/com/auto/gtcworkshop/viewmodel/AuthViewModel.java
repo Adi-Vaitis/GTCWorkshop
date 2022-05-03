@@ -13,21 +13,21 @@ public class AuthViewModel extends AndroidViewModel {
 
     private AuthentificationRepository repository;
     private MutableLiveData<FirebaseUser> userData;
-    private MutableLiveData<Boolean> loggedstatus;
+    private MutableLiveData<Boolean> loggedStatus;
 
     public MutableLiveData<FirebaseUser> getUserData() {
         return userData;
     }
 
     public MutableLiveData<Boolean> getLoggedstatus() {
-        return loggedstatus;
+        return loggedStatus;
     }
 
     public AuthViewModel(@NonNull Application application) {
         super(application);
         repository = new AuthentificationRepository(application);
         userData = repository.getFirebaseUserMutableLiveData();
-        loggedstatus = repository.getUserLoggedMutableLiveData();
+        loggedStatus = repository.getUserLoggedMutableLiveData();
     }
 
     public void register(String email, String password) {

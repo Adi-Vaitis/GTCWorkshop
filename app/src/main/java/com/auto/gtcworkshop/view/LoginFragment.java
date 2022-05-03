@@ -67,6 +67,7 @@ public class LoginFragment extends Fragment {
             ltocreate = view.findViewById(R.id.toRegister);
 
 
+
             navController = Navigation.findNavController(view);
 
             ltocreate.setOnClickListener(new View.OnClickListener() {
@@ -76,42 +77,41 @@ public class LoginFragment extends Fragment {
                 }
             });
 
-            lLoginBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String email = lEmail.getText().toString().trim();
-                    String password = lPassword.getText().toString().trim();
+lLoginBtn.setOnClickListener(new View.OnClickListener()
+       {
+            @Override
+            public void onClick(View v) {
+                String email = lEmail.getText().toString().trim();
+                String password = lPassword.getText().toString().trim();
 
 // pot sa fac o metoda sa fac checkurile astea in repository ?!?!?!sau trebuiesc astea sa fie in repository ?
-                    if (TextUtils.isEmpty(email)) {
-                        lEmail.setError("Email address is required");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(password)) {
-                        lEmail.setError("Password is required");
-                        return;
-                    }
-                    if (password.length() < 6) {
-                        lPassword.setError("The password must be longer than 6 characters");
-                        return;
-                    }
-
-                    viewModel.register(email, password);
-
-
+                if (TextUtils.isEmpty(email)) {
+                    lEmail.setError("Email address is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    lEmail.setError("Password is required");
+                    return;
+                }
+                if (password.length() < 6) {
+                    lPassword.setError("The password must be longer than 6 characters");
+                    return;
                 }
 
-            });
+                viewModel.register(email, password);
+
+
+            }
+
+        });
 
         }
+            @Override
 
-        @Override
 
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_login, container, false);
-        }
+            public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
-}
+}}
