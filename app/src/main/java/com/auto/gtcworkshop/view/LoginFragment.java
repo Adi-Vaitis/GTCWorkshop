@@ -27,8 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
 
-    public class SignUpFragment extends Fragment {
-
         public static final int GOOGLE_SIGN_IN_CODE = 1005;
         public static final int REQUEST_CODE = 10005;
         EditText lEmail, lPassword;
@@ -42,7 +40,7 @@ public class LoginFragment extends Fragment {
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+            viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
             viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
                 @Override
                 public void onChanged(FirebaseUser firebaseUser) {
@@ -114,4 +112,4 @@ lLoginBtn.setOnClickListener(new View.OnClickListener()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
-}}
+}

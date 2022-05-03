@@ -77,7 +77,10 @@ public class AuthentificationRepository {
 
     public void logout() {
         auth.signOut();
+        FirebaseAuth.getInstance().signOut();
         userLoggedMutableLiveData.postValue(true);
     }
+
+
 
 }

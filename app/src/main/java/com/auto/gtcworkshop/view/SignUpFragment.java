@@ -19,13 +19,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.viewmodel.AuthViewModel;
+import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignUpFragment extends Fragment {
+    private SignUpViewModel registerViewModel;
 
     private EditText rFullName, rEmail, rPassword, rPhone;
     private TextView rtocreate;
