@@ -22,26 +22,12 @@ public class AuthentificationRepository {
     private MutableLiveData<Boolean> userLoggedMutableLiveData;
     private FirebaseAuth auth;
 
-    public static AuthentificationRepository getInstance(){
-        if(instance == null){
-            instance = new AuthentificationRepository();
-        }
-        return instance;
-    }
-
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
     }
 
     public MutableLiveData<Boolean> getUserLoggedMutableLiveData() {
         return userLoggedMutableLiveData;
-    }
-
-    public AuthentificationRepository(){
-        application = new Application();
-        firebaseUserMutableLiveData = new MutableLiveData<>();
-        userLoggedMutableLiveData = new MutableLiveData<>();
-        auth = FirebaseAuth.getInstance();
     }
 
 
