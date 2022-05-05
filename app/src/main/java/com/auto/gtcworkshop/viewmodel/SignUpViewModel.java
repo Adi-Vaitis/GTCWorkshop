@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 
+import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.repository.AuthentificationRepository;
 
 public class SignUpViewModel extends AndroidViewModel {
@@ -12,10 +13,10 @@ public class SignUpViewModel extends AndroidViewModel {
 
     public SignUpViewModel(Application application)
     {super(application);
-    userRepository = AuthentificationRepository.getInstance(application);
+    userRepository = AuthentificationRepository.getInstance();
     }
-    public void register(String email, String password)
-    {userRepository.register(email,password);}
+    public void register(User user)
+    {userRepository.register(user);}
 
     public void setSignInpressed(Boolean isSignInpressed)
     {userRepository.setSignInpressed(isSignInpressed);}

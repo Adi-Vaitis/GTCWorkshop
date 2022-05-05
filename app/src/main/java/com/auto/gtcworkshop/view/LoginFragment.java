@@ -21,8 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.auto.gtcworkshop.R;
-import com.auto.gtcworkshop.viewmodel.AuthViewModel;
-import com.google.firebase.auth.FirebaseAuth;
+import com.auto.gtcworkshop.viewmodel.RegisterViewModel;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
@@ -34,13 +33,13 @@ public class LoginFragment extends Fragment {
         ImageView lgoogleBtn, lfbBtn;
         TextView ltocreate, forgotLink;
         ProgressBar pBar;
-        private AuthViewModel viewModel;
+        private RegisterViewModel viewModel;
         private NavController navController;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+            viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(RegisterViewModel.class);
             viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
                 @Override
                 public void onChanged(FirebaseUser firebaseUser) {

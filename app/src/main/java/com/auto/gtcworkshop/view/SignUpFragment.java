@@ -21,9 +21,7 @@ import android.widget.TextView;
 
 
 import com.auto.gtcworkshop.R;
-import com.auto.gtcworkshop.viewmodel.AuthViewModel;
 import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
@@ -120,7 +118,7 @@ View view = inflater.inflate(R.layout.fragment_register, container, false);
                     rPhone.setError("The phone number must be at least 8 characters");
                     return;
                 }
-                viewModel.register(email, password);
+                viewModel.register(User);
 //metoda de facut pentru a introduce full name si phone number in firestore
 
             }

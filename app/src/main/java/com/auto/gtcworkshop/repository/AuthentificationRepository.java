@@ -6,8 +6,12 @@ import android.widget.Toast;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
+import com.auto.gtcworkshop.livedata.UserLiveData;
+import com.auto.gtcworkshop.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -15,44 +19,48 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
+import com.auto.gtcworkshop.livedata.UserLiveData;
+import com.auto.gtcworkshop.model.User;
+
+
 public class AuthentificationRepository {
-    private Application application;
     private static AuthentificationRepository instance;
-    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
-    private MutableLiveData<Boolean> userLoggedMutableLiveData;
-    private FirebaseAuth auth;
 
-    public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
-        return firebaseUserMutableLiveData;
+    private FirebaseAuth fAuth;
+
+    private MutableLiveData<String> error;
+    private UserLiveData user;
+
+    private FirebaseUserLiveData currentFirebaseUser;
+
+    private AuthentificationRepository() {
+
+        currentFirebaseUser = new FirebaseUserLiveData();
+
     }
 
-    public MutableLiveData<Boolean> getUserLoggedMutableLiveData() {
-        return userLoggedMutableLiveData;
-    }
-
-
-    public AuthentificationRepository(Application application) {
-
-        this.application = application;
-        firebaseUserMutableLiveData = new MutableLiveData<>();
-        userLoggedMutableLiveData = new MutableLiveData<>();
-        auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null) {
-            firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
+    public static AuthentificationRepository getInstance() {
+        if (instance == null) {
+            instance = new AuthentificationRepository();
         }
+
+        return instance;
     }
 
-    public void register(String email, String password) {
 
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public void register(User user) {
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                    Toast.makeText(application, "Account Created", Toast.LENGTH_SHORT).show();
+
+
                 } else {
-                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    error.setValue("Invalid email/password combination");
 
                 }
             }
@@ -61,29 +69,40 @@ public class AuthentificationRepository {
     }
 
     public void login(String email, String password) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                    Toast.makeText(application, "Logged In", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        if (email == null || email.isEmpty()) {
+            error.setValue("Please enter an email address");
+        } else if (password == null || password.isEmpty()) {
+            error.setValue("Please enter a password");
+        } else {
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                    } else {
+
+                    }
                 }
-            }
-        });
+            });
 
+        }
     }
 
-    public void logout() {
-        auth.signOut();
+    public void logOut() {
         FirebaseAuth.getInstance().signOut();
-        userLoggedMutableLiveData.postValue(true);
+
     }
 
-public static AuthentificationRepository getInstance(Application application)
-{if(instance == null)
-{instance = new AuthentificationRepository(application);}
-return instance;}
 
+    public FirebaseUserLiveData getCurrentFirebaseUser() {
+        return currentFirebaseUser;
+    }
+
+    public LiveData<String> getErrorMessage() {
+        return error;
+    }
 }
+
+
+
