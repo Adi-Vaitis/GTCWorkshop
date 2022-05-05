@@ -12,7 +12,7 @@ public class SignUpViewModel extends AndroidViewModel {
 
     public SignUpViewModel(Application application)
     {super(application);
-    userRepository = AuthentificationRepository.getInstance();
+    userRepository = AuthentificationRepository.getInstance(application);
     }
     public void register(String email, String password)
     {userRepository.register(email,password);}
