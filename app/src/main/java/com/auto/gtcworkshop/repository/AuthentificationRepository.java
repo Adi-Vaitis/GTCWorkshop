@@ -95,6 +95,9 @@ public class AuthentificationRepository {
         userLoggedMutableLiveData.postValue(true);
     }
 
-
+public static AuthentificationRepository getInstance(Application application)
+{if(instance == null)
+{instance = new AuthentificationRepository(application);}
+return instance;}
 
 }
