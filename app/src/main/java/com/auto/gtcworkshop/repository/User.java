@@ -18,9 +18,8 @@ public class User {
         phone = null;
     }
 
-    public User (String uid, String userName, String email, String phone, ArrayList<String> reservations, String fullName)
+    public User (String uid, String email, String phone, ArrayList<String> reservations, String fullName)
     { this.uid = uid;
-
         this.phone = phone;
         this.email = email;
         this.reservations = reservations;
