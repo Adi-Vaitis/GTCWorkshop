@@ -21,28 +21,45 @@ import android.widget.TextView;
 
 
 import com.auto.gtcworkshop.R;
-import com.auto.gtcworkshop.viewmodel.AuthViewModel;
 import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignUpFragment extends Fragment {
-    private SignUpViewModel registerViewModel;
+
 
     private EditText rFullName, rEmail, rPassword, rPhone;
     private TextView rtocreate;
     private Button rCreateBtn;
     private ProgressBar progressBar;
     private String userID;
-    private ProgressBar pBar;
-    private AuthViewModel viewModel;
+    private SignUpViewModel viewModel;
     private NavController navController;
+
+    public static SignUpFragment newInstance()
+    {return new SignUpFragment();}
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+View view = inflater.inflate(R.layout.fragment_register, container, false);
+        rFullName = view.findViewById(R.id.fullname);
+        rEmail = view.findViewById(R.id.email);
+        rPassword = view.findViewById(R.id.paswword);
+        rPhone = view.findViewById(R.id.phone);
+        rCreateBtn = view.findViewById(R.id.createbtn);
+        pBar = view.findViewById(R.id.progressBar);
+        rtocreate = view.findViewById(R.id.tologin);
+
+
+        return view;
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
         viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
@@ -55,14 +72,7 @@ public class SignUpFragment extends Fragment {
         });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -107,10 +117,9 @@ public class SignUpFragment extends Fragment {
                 if (rPhone.length() < 8) {
                     rPhone.setError("The phone number must be at least 8 characters");
                     return;
-
                 }
-                viewModel.register(email, password);
-
+                viewModel.register(User);
+//metoda de facut pentru a introduce full name si phone number in firestore
 
             }
 
