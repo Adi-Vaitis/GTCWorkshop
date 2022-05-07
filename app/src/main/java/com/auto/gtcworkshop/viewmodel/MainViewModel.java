@@ -18,7 +18,7 @@ public class MainViewModel extends ViewModel {
         }
 
         public LiveData<FirebaseUser> getCurrentFirebaseUser() {
-            return repository.getFirebaseUser();
+            return repository.getCurrentFirebaseUser();
         }
 
     }

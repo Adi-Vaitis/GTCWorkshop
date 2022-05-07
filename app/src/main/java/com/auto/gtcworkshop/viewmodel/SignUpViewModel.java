@@ -9,20 +9,19 @@ import com.auto.gtcworkshop.repository.AuthentificationRepository;
 
 public class SignUpViewModel extends AndroidViewModel {
 
-    private final AuthentificationRepository userRepository;
+    private final AuthentificationRepository repository;
 
     public SignUpViewModel(Application application)
     {super(application);
-    userRepository = AuthentificationRepository.getInstance();
+    repository = AuthentificationRepository.getInstance();
     }
-    public void register(User user)
-    {userRepository.register(user);}
+    public void register(String fullName, String email, String phone, String password) throws Exception {
+        repository.register(new User(fullName, email,phone, password));
+    }
 
-    public void setSignInpressed(Boolean isSignInpressed)
-    {userRepository.setSignInpressed(isSignInpressed);}
-    public void alreadyUser()
-    {}
+    public void reset(){
 
+    }
 
 
 }
