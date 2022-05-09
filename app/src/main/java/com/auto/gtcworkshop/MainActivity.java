@@ -1,5 +1,10 @@
 package com.auto.gtcworkshop;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,27 +15,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.auto.gtcworkshop.viewmodel.MainViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView image;
-    private TextView username;
-    private TextView email;
-
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationDrawer;
-
     private MainViewModel viewModel;
 
 
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         initializeLayout();
         setupNavigation();
         setupAuthentication();
-
+        logOut();
     }
 
     private void initializeLayout() {
@@ -65,17 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationDrawer, navController);
-        navigationDrawer.setNavigationItemSelectedListener(item -> {
-            Bundle bundle = new Bundle();
-            if (item.getItemId() == R.id.accountFragment) {
-                bundle.putString("account", "personal");
-            }
-
-
-            navController.navigate(item.getItemId(), bundle);
-            drawerLayout.closeDrawers();
-            return true;
-        });
     }
 
     private void setupAuthentication() {
@@ -100,5 +84,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void logOut() {
+        FirebaseAuth.getInstance().signOut();
+        navController.navigate(R.id.loginFragment);
+    }
 
 }

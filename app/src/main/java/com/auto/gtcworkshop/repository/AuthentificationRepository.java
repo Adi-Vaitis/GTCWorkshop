@@ -31,10 +31,6 @@ public class AuthentificationRepository {
     private FirebaseAuth fAuth;
 
     private MutableLiveData<String> error = new MutableLiveData<>("");
-    private UserLiveData user;
-    private FirebaseUser userFire;
-    private DatabaseReference databaseReference;
-    private FirebaseDatabase database;
     private FirebaseFirestore fStore;
     String userID;
 
@@ -61,12 +57,9 @@ public class AuthentificationRepository {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.d(TAG, "createUserWithEmail:success");
-                FirebaseUser userFire = fAuth.getCurrentUser();
-
             }
 
             userID = fAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = fStore.collection("Users").document(userID);
 
             Map<String, Object> user1 = new HashMap<>();
             user1.put("FullName", user.getFullName());
@@ -96,9 +89,9 @@ public class AuthentificationRepository {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(userLog.getEmail(), userLog.getPassword())
                 .addOnCompleteListener(result -> {
                     if (result.isSuccessful()) {
-                        Log.i(TAG, "Created account!!!!!!!!!!!!!!");
+                        Log.i(TAG, "Login Successfully!");
                     } else {
-                        Log.i(TAG, "Not created");
+                        Log.i(TAG, "Error login!");
                         error.setValue("Invalid email/password combination");
                     }
                 });
@@ -106,7 +99,6 @@ public class AuthentificationRepository {
 
     public void logOut() {
         FirebaseAuth.getInstance().signOut();
-
     }
 
 

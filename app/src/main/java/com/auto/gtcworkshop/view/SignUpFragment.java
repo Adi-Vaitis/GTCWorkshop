@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.auto.gtcworkshop.model.User;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import com.auto.gtcworkshop.R;
+import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
 
 
@@ -29,9 +27,6 @@ public class SignUpFragment extends Fragment {
     private EditText rFullName, rEmail, rPassword, rPhone;
     private TextView rToCreate;
     private Button rCreateBtn;
-    private ProgressBar progressBar;
-    private FirebaseFirestore fStore;
-    private String userID;
     private SignUpViewModel viewModel;
     private NavController navController;
 
@@ -64,18 +59,14 @@ public class SignUpFragment extends Fragment {
 
     private void setUpViews() {
         rCreateBtn.setOnClickListener(view -> {
-            try {
-                viewModel.register(new User(rEmail.getText().toString(), rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            viewModel.register(new User(rEmail.getText().toString(), rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString()));
             navController.navigate(R.id.action_signUpFragment_to_accountFragment);
+            Toast.makeText(getActivity(), "Account registered successfully!", Toast.LENGTH_SHORT).show();
+            rToCreate.setOnClickListener(v -> {
+                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
+            });
 
         });
-        rToCreate.setOnClickListener(v -> {
-            navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-        });
-
     }
 
     @Override

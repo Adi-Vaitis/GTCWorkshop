@@ -9,6 +9,7 @@
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/activity_register.xml" value="0.17916666666666667" />
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/contact_us_fragment.xml" value="0.264" />
+        <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/fragment_account.xml" value="0.25416666666666665" />
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/fragment_bookings.xml" value="0.17916666666666667" />
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
         <entry key="..\:/SEM4/GTCWorkshop/app/src/main/res/layout/fragment_services.xml" value="0.536" />
@@ -23,11 +24,9 @@
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/navdrawer.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/navdrawer.xml" value="0.1" />
         <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/layout/navdrawerheader.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/layout/navdrawerheader.xml" value="0.4041025641025641" />
-        <entry key="..\:/Users/stanf/Desktop/AdiAnd/GTCWorkshop/app/src/main/res/menu/navdraweritems.xml" value="0.12037037037037036" />
+        <entry key="..\:/Users/stanf/Desktop/ANDv2/GTCWorkshop/app/src/main/res/menu/navdraweritems.xml" value="0.1" />
       </map>
     </option>
   </component>
