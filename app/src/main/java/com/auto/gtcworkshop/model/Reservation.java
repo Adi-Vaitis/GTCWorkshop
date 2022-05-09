@@ -9,15 +9,16 @@ public class Reservation {
     private String model;
     private String problem;
     private String millage;
-    // aici trebuie adaugat si numele + numaru de telefon al userului? sau le ia din getuser?
 
-public Reservation()
-{}
-    public Reservation(String feel, String model, String problem, String millage)
-    {this.feel=feel;
-    this.model=model;
-    this.problem=problem;
-    this.millage=millage;}
+    public Reservation() {
+    }
+
+    public Reservation(String feel, String model, String problem, String millage) {
+        this.feel = feel;
+        this.model = model;
+        this.problem = problem;
+        this.millage = millage;
+    }
 
     public String getId() {
         return id;
@@ -59,22 +60,16 @@ public Reservation()
         this.millage = millage;
     }
 
-    public Map<String, Object> asMap()
-    {
+    public Map<String, Object> asMap() {
         Map<String, Object> output = new HashMap<>();
-        output.put("feel",feel);
-        output.put("model",model);
+        output.put("feel", feel);
+        output.put("model", model);
         output.put("problem", problem);
-        output.put("millage",millage);
-
+        output.put("millage", millage);
 
 
         return output;
     }
-
-
-
-
 
 
 }

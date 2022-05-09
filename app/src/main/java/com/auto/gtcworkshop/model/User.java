@@ -16,24 +16,25 @@ public class User {
     }
 
 
-    public User(String email, String password, String fullName,String phone)
-    {
+    public User(String email, String password, String fullName, String phone) {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
         this.phone = phone;
     }
-    public User (String email, String password)
-    {this.email=email;
-    this.password = password;}
-public User(String email, String password, String fullName,String phone, List<Reservation> reservations)
-{
-    this.email = email;
-    this.fullName = fullName;
-    this.password = password;
-    this.phone = phone;
-    this.reservations = reservations;
-}
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String email, String password, String fullName, String phone, List<Reservation> reservations) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.phone = phone;
+        this.reservations = reservations;
+    }
 
     public String getId() {
         return id;

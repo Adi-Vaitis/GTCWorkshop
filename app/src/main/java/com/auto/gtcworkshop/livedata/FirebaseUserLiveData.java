@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class FirebaseUserLiveData extends LiveData<FirebaseUser> {
+
     private FirebaseAuth.AuthStateListener listener = auth -> {
         setValue(auth.getCurrentUser());
     };

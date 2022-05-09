@@ -27,10 +27,10 @@ public class SignUpFragment extends Fragment {
 
 
     private EditText rFullName, rEmail, rPassword, rPhone;
-    private TextView rtocreate;
+    private TextView rToCreate;
     private Button rCreateBtn;
     private ProgressBar progressBar;
-    private FirebaseFirestore fstore;
+    private FirebaseFirestore fStore;
     private String userID;
     private SignUpViewModel viewModel;
     private NavController navController;
@@ -58,21 +58,21 @@ public class SignUpFragment extends Fragment {
         rPassword = view.findViewById(R.id.paswword);
         rPhone = view.findViewById(R.id.phone);
         rCreateBtn = view.findViewById(R.id.createbtn);
-        rtocreate = view.findViewById(R.id.tologin);
+        rToCreate = view.findViewById(R.id.tologin);
         navController = Navigation.findNavController(view);
     }
 
     private void setUpViews() {
         rCreateBtn.setOnClickListener(view -> {
             try {
-                viewModel.register(new User(rEmail.getText().toString() ,rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString() ));
+                viewModel.register(new User(rEmail.getText().toString(), rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
             navController.navigate(R.id.action_signUpFragment_to_accountFragment);
 
         });
-        rtocreate.setOnClickListener(v -> {
+        rToCreate.setOnClickListener(v -> {
             navController.navigate(R.id.action_signUpFragment_to_loginFragment);
         });
 
@@ -85,61 +85,4 @@ public class SignUpFragment extends Fragment {
     }
 }
 
-/*
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        rFullName = view.findViewById(R.id.fullname);
-        rEmail = view.findViewById(R.id.email);
-        rPassword = view.findViewById(R.id.paswword);
-        rPhone = view.findViewById(R.id.phone);
-        rCreateBtn = view.findViewById(R.id.createbtn);
-        rtocreate = view.findViewById(R.id.tologin);
-
-        navController = Navigation.findNavController(view);
-
-        rtocreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-            }
-        });
-
-        rCreateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = rEmail.getText().toString().trim();
-                String password = rPassword.getText().toString().trim();
-                String fullName = rFullName.getText().toString();
-                String phone = rPhone.getText().toString();
-// pot sa fac o metoda sa fac checkurile astea in repository ?!?!?!sau trebuiesc astea sa fie in repository ?
-                if (TextUtils.isEmpty(email)) {
-                    rEmail.setError("Email address is required");
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    rPassword.setError("Password is required");
-                    return;
-                }
-                if (password.length() < 6) {
-                    rPassword.setError("The password must be longer than 6 characters");
-                    return;
-
-                }
-                if (rPhone.length() < 8) {
-                    rPhone.setError("The phone number must be at least 8 characters");
-                    return;
-                }
-
-
-                viewModel.register(rFullName, rEmail,rPhone,rPassword);
-//metoda de facut pentru a introduce full name si phone number in firestore
-
-            }
-
-        });
-
-
-    }
-*/
 
