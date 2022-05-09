@@ -1,16 +1,6 @@
 package com.auto.gtcworkshop.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.auto.gtcworkshop.model.User;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignUpFragment extends Fragment {
@@ -33,14 +30,14 @@ public class SignUpFragment extends Fragment {
     private TextView rtocreate;
     private Button rCreateBtn;
     private ProgressBar progressBar;
+    private FirebaseFirestore fstore;
     private String userID;
     private SignUpViewModel viewModel;
     private NavController navController;
 
-    public static SignUpFragment newInstance()
-    {return new SignUpFragment();}
-
-
+    public static SignUpFragment newInstance() {
+        return new SignUpFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,11 +50,7 @@ public class SignUpFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(SignUpViewModel.class);
         initializeViews(view);
         setUpViews();
-      //  setUpViews();
     }
-
-
-
 
     private void initializeViews(View view) {
         rFullName = view.findViewById(R.id.fullname);
@@ -71,9 +64,8 @@ public class SignUpFragment extends Fragment {
 
     private void setUpViews() {
         rCreateBtn.setOnClickListener(view -> {
-//aici e o pl de ros ca pzdmasii eu nu am validate password si imi zice de mare try catch
             try {
-                viewModel.register(rFullName.getText().toString(), rEmail.getText().toString(), rPhone.getText().toString(),rPassword.getText().toString());
+                viewModel.register(new User(rEmail.getText().toString() ,rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString() ));
             } catch (Exception e) {
                 e.printStackTrace();
             }

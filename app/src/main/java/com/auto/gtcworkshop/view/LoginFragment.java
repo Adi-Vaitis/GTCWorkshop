@@ -74,8 +74,8 @@ public class LoginFragment extends Fragment {
 
     private void setupViews() {
         lLoginBtn.setOnClickListener(v -> {
-            viewModel.attemptLogin(lEmail.getText().toString(),
-                    lPassword.getText().toString());
+            viewModel.attemptLogin(lEmail.getText().toString(), lPassword.getText().toString());
+            navController.navigate(R.id.action_loginFragment_to_accountFragment);
         });
 
 

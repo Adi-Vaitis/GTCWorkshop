@@ -15,8 +15,8 @@ public class SignUpViewModel extends AndroidViewModel {
     {super(application);
     repository = AuthentificationRepository.getInstance();
     }
-    public void register(String fullName, String email, String phone, String password) throws Exception {
-        repository.register(new User(fullName, email,phone, password));
+    public void register(User user) {
+        repository.register(user);
     }
 
     public void reset(){
