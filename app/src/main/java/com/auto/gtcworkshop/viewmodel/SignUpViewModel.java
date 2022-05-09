@@ -11,15 +11,16 @@ public class SignUpViewModel extends AndroidViewModel {
 
     private final AuthentificationRepository repository;
 
-    public SignUpViewModel(Application application)
-    {super(application);
-    repository = AuthentificationRepository.getInstance();
+    public SignUpViewModel(Application application) {
+        super(application);
+        repository = AuthentificationRepository.getInstance();
     }
+
     public void register(User user) {
         repository.register(user);
     }
 
-    public void reset(){
+    public void reset() {
 
     }
 
