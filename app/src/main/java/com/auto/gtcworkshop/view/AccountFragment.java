@@ -3,12 +3,18 @@ package com.auto.gtcworkshop.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.auto.gtcworkshop.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,15 +22,20 @@ import com.auto.gtcworkshop.R;
  * create an instance of this fragment.
  */
 public class AccountFragment extends Fragment {
+    private NavController navController;
+    //private PersonalProfileViewModel viewModel;
+    private TextInputEditText username;
+    private ImageView profilePicture;
+    private TextView followersTextLabel;
+    private TextView followingTextLabel;
+    private LinearLayout recipeLayout;
+    private LinearLayout fridgeLayout;
+    private TextView recipeTxt;
+    private TextView fridgeTxt;
+    private TextInputEditText password;
+    private TextInputEditText email;
+    private FloatingActionButton editBtn;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public AccountFragment() {
         // Required empty public constructor

@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel viewModel;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
 
         View header = navigationDrawer.getHeaderView(0);
+
     }
 
     private void setupNavigation() {
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.accountFragment
+                R.id.
 
         ).setOpenableLayout(drawerLayout).build();
 
@@ -68,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         navigationDrawer.setNavigationItemSelectedListener(item -> {
             Bundle bundle = new Bundle();
             if (item.getItemId() == R.id.accountFragment) {
-                bundle.putString("account", "personal");
-            }
+                bundle.putString("recipeType", "personal");}
 
 
             navController.navigate(item.getItemId(), bundle);
@@ -77,20 +81,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
-
     private void setupAuthentication() {
         viewModel.getCurrentFirebaseUser().observe(this, user -> {
             if (user == null) {
                 navController.navigate(R.id.loginFragment);
             }
+            //de schimbat din accountFragment in ce mm sa porneasca aplicatia
+            navController.navigate(R.id.accountFragment);
         });
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -99,6 +102,13 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+
+
+
+
+
+
 
 
 }
