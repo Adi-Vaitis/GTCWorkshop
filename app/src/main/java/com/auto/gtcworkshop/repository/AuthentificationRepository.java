@@ -1,29 +1,15 @@
 package com.auto.gtcworkshop.repository;
 
-import android.app.Application;
-import android.text.TextUtils;
-import android.widget.Toast;
-import android.text.TextUtils;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
 import com.auto.gtcworkshop.livedata.UserLiveData;
 import com.auto.gtcworkshop.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
-import com.auto.gtcworkshop.livedata.UserLiveData;
-import com.auto.gtcworkshop.model.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class AuthentificationRepository {
@@ -33,13 +19,17 @@ public class AuthentificationRepository {
 
     private MutableLiveData<String> error;
     private UserLiveData user;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+
 
     private FirebaseUserLiveData currentFirebaseUser;
 
     private AuthentificationRepository() {
 
         currentFirebaseUser = new FirebaseUserLiveData();
-
+//        databaseReference = database.getReference();
+        currentFirebaseUser = new FirebaseUserLiveData();
     }
 
     public static AuthentificationRepository getInstance() {
@@ -53,17 +43,15 @@ public class AuthentificationRepository {
 
     public void register(User user) {
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(task ->  {
                 if (task.isSuccessful()) {
+                    databaseReference.child("users").child(FirebaseAuth.getInstance().getUid()).setValue(user);
+                    UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(user.getFullName())
+                            .build();
 
-
-                } else {
-                    error.setValue("Invalid email/password combination");
-
+                    currentFirebaseUser.getValue().updateProfile(request);
                 }
-            }
 
         });
     }
@@ -75,16 +63,12 @@ public class AuthentificationRepository {
             error.setValue("Please enter a password");
         } else {
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-
-                    } else {
-
-                    }
-                }
-            });
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(result -> {
+                        if (!result.isSuccessful()) {
+                            error.setValue("Invalid email/password combination");
+                        }
+                    });
 
         }
     }

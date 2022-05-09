@@ -40,7 +40,6 @@ public class LoginFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -51,18 +50,17 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(LogInViewModel.class);
         navController = Navigation.findNavController(view);
 
-        viewModel.getCurrentFirebaseUser().observe(getViewLifecycleOwner(), user -> {
-            if (user != null) {
-                Bundle bundle = new Bundle();
-                //  bundle.putString("Reservation", "personal");
-                //    navController.navigate(R.id.fragment_reservatrions, bundle);
-            }
-        });
+       // viewModel.getCurrentFirebaseUser().observe(getViewLifecycleOwner(), user -> {
+        //    if (user != null) {
+       //         Bundle bundle = new Bundle();
+       //           bundle.putString("Reservation", "personal");
+                   // navController.navigate(R.id.fragment_reservatrions, bundle);
+       //     }
+      //  });
 
-        // sa fac ca la log in reservarile sa se updateze ptr useras
 
         initializeViews(view);
-//setupViews ()
+        setupViews ();
     }
 
     private void initializeViews(View view) {
@@ -81,22 +79,16 @@ public class LoginFragment extends Fragment {
         });
 
 
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
+/*        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
         });
 
-        ltocreate.setOnClickListener(v ->{
+ */
+
+        ltocreate.setOnClickListener(v -> {
             navController.navigate(R.id.action_loginFragment_to_signUpFragment);
         });
     }
-
-
-
-
-
-
-
-
 
 
 }
