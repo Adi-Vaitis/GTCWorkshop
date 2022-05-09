@@ -63,19 +63,13 @@ public class LoginFragment extends Fragment {
     private void setupViews() {
         lLoginBtn.setOnClickListener(v -> {
             viewModel.attemptLogin(new User(lEmail.getText().toString(), lPassword.getText().toString()));
+            Toast.makeText(getActivity(), "Logged In", Toast.LENGTH_SHORT).show();
             navController.navigate(R.id.action_loginFragment_to_accountFragment);
         });
 
-
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
-            Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-
-
-            lToCreate.setOnClickListener(v -> {
-                navController.navigate(R.id.action_loginFragment_to_signUpFragment);
-            });
+        lToCreate.setOnClickListener(v -> {
+            navController.navigate(R.id.action_loginFragment_to_signUpFragment);
         });
-
 
     }
 }

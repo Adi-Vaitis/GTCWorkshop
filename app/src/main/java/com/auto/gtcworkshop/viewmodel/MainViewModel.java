@@ -21,5 +21,9 @@ public class MainViewModel extends ViewModel {
             return repository.getCurrentFirebaseUser();
         }
 
+        public void logOut(){
+            repository.logOut();
+        }
+
     }
 
