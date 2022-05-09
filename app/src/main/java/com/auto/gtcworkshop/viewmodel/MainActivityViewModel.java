@@ -16,6 +16,6 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public LiveData<FirebaseUser> getCurrentUser(){
-        return authentificationRepository.
+        return authentificationRepository.getCurrentFirebaseUser();
     }
 }

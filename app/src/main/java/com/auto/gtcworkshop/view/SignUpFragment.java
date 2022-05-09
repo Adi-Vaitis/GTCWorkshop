@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.auto.gtcworkshop.R;
@@ -39,41 +40,60 @@ public class SignUpFragment extends Fragment {
     public static SignUpFragment newInstance()
     {return new SignUpFragment();}
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-View view = inflater.inflate(R.layout.fragment_register, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_register, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(getActivity()).get(SignUpViewModel.class);
+        initializeViews(view);
+        setUpViews();
+      //  setUpViews();
+    }
+
+
+
+
+    private void initializeViews(View view) {
         rFullName = view.findViewById(R.id.fullname);
         rEmail = view.findViewById(R.id.email);
         rPassword = view.findViewById(R.id.paswword);
         rPhone = view.findViewById(R.id.phone);
         rCreateBtn = view.findViewById(R.id.createbtn);
-        pBar = view.findViewById(R.id.progressBar);
         rtocreate = view.findViewById(R.id.tologin);
-
-
-        return view;
+        navController = Navigation.findNavController(view);
     }
 
+    private void setUpViews() {
+        rCreateBtn.setOnClickListener(view -> {
+//aici e o pl de ros ca pzdmasii eu nu am validate password si imi zice de mare try catch
+            try {
+                viewModel.register(rFullName.getText().toString(), rEmail.getText().toString(), rPhone.getText().toString(),rPassword.getText().toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            navController.navigate(R.id.action_signUpFragment_to_accountFragment);
+
+        });
+        rtocreate.setOnClickListener(v -> {
+            navController.navigate(R.id.action_signUpFragment_to_loginFragment);
+        });
+
+    }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
-        viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if (firebaseUser != null) {
-                    navController.navigate(R.id.action_loginFragment_to_accountFragment);
-
-
-                }
-            }
-        });
+    public void onStop() {
+        super.onStop();
+        viewModel.reset();
     }
+}
 
-
-
+/*
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -82,8 +102,8 @@ View view = inflater.inflate(R.layout.fragment_register, container, false);
         rPassword = view.findViewById(R.id.paswword);
         rPhone = view.findViewById(R.id.phone);
         rCreateBtn = view.findViewById(R.id.createbtn);
-        pBar = view.findViewById(R.id.progressBar);
         rtocreate = view.findViewById(R.id.tologin);
+
         navController = Navigation.findNavController(view);
 
         rtocreate.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +138,9 @@ View view = inflater.inflate(R.layout.fragment_register, container, false);
                     rPhone.setError("The phone number must be at least 8 characters");
                     return;
                 }
-                viewModel.register(User);
+
+
+                viewModel.register(rFullName, rEmail,rPhone,rPassword);
 //metoda de facut pentru a introduce full name si phone number in firestore
 
             }
@@ -127,5 +149,5 @@ View view = inflater.inflate(R.layout.fragment_register, container, false);
 
 
     }
+*/
 
-}
