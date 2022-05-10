@@ -38,8 +38,26 @@
         android:name="com.auto.gtcworkshop.view.ServicesFragment"
         android:label="Services"
         tools:layout="@layout/fragment_services">
-        <action
-            android:id="@+id/action_navi_services_to_accountFragment"
-            app:destination="@id/accountFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/navi_stream"
+        android:name="com.auto.gtcworkshop.view.ContactUsFragment"
+        android:label="LiveStream"
+        tools:layout="@layout/fragment_livestream"/>
+    <fragment
+        android:id="@+id/navi_logout"
+        android:name="com.auto.gtcworkshop.view.ContactUsFragment"
+        android:label="ContactUs"
+        tools:layout="@layout/fragment_logout"/>
+    <fragment
+        android:id="@+id/navi_reservations"
+        android:name="com.auto.gtcworkshop.view.ContactUsFragment"
+        android:label="ContactUs"
+        tools:layout="@layout/fragment_reservations"/>
+    <fragment
+        android:id="@+id/navi_contactus"
+        android:name="com.auto.gtcworkshop.view.ContactUsFragment"
+        android:label="ContactUs"
+        tools:layout="@layout/fragment_contact_us"/>
+
 </navigation>
