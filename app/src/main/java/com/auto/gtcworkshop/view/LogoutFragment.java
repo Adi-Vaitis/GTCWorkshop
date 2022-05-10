@@ -11,6 +11,8 @@ import com.auto.gtcworkshop.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LogoutFragment extends Fragment {
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 

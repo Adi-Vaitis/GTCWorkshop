@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.auto.gtcworkshop.R;
 
 public class ContactUsFragment extends Fragment {
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 

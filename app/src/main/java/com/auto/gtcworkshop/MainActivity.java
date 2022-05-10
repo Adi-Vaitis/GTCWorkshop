@@ -51,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupNavigation() {
         navController = Navigation.findNavController(this, R.id.main_activity_fragment);
         setSupportActionBar(toolbar);
+
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navi_contactus
-        ).setOpenableLayout(drawerLayout).build();
+                R.id.navi_contactus,
+                R.id.navi_reservations)
+                .setOpenableLayout(drawerLayout)
+                .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationDrawer, navController);
