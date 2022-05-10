@@ -1,6 +1,7 @@
 package com.auto.gtcworkshop;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.auto.gtcworkshop.viewmodel.MainViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,15 +40,12 @@ public class MainActivity extends AppCompatActivity {
         initializeLayout();
         setupNavigation();
         setupAuthentication();
-        logOut();
     }
 
     private void initializeLayout() {
         navigationDrawer = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
-
-        View header = navigationDrawer.getHeaderView(0);
     }
 
     private void setupNavigation() {
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.accountFragment
-
         ).setOpenableLayout(drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -83,12 +81,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void logOut() {
-        navigationDrawer.getMenu().getItem(2).setOnMenuItemClickListener(e -> {
-            FirebaseAuth.getInstance().signOut();
-            navController.navigate(R.id.loginFragment);
-            return false;
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navdraweritems, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
 }

@@ -6,14 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.auto.gtcworkshop.R;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class ServicesFragment extends Fragment {
-
+public class LogoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_services, container, false);
+
+        FirebaseAuth.getInstance().signOut();
+        return inflater.inflate(R.layout.fragment_logout, container, false);
     }
 }

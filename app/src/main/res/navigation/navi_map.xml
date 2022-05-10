@@ -33,4 +33,13 @@
         android:name="com.auto.gtcworkshop.view.AccountFragment"
         android:label="AccountFragment"
         tools:layout="@layout/fragment_account"/>
+    <fragment
+        android:id="@+id/navi_services"
+        android:name="com.auto.gtcworkshop.view.ServicesFragment"
+        android:label="Services"
+        tools:layout="@layout/fragment_services">
+        <action
+            android:id="@+id/action_navi_services_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
 </navigation>
