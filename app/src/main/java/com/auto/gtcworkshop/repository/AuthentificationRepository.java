@@ -28,13 +28,13 @@ public class AuthentificationRepository {
 
     private static AuthentificationRepository instance;
 
-    private FirebaseAuth fAuth;
+    private final FirebaseAuth fAuth;
 
-    private MutableLiveData<String> error = new MutableLiveData<>("");
-    private FirebaseFirestore fStore;
+    private final MutableLiveData<String> error = new MutableLiveData<>("");
+    private final FirebaseFirestore fStore;
     String userID;
 
-    private FirebaseUserLiveData currentFirebaseUser;
+    private final FirebaseUserLiveData currentFirebaseUser;
 
     private AuthentificationRepository() {
 
@@ -59,14 +59,12 @@ public class AuthentificationRepository {
                 Log.d(TAG, "createUserWithEmail:success");
             }
 
-            userID = fAuth.getCurrentUser().getUid();
-
             Map<String, Object> user1 = new HashMap<>();
             user1.put("FullName", user.getFullName());
             user1.put("Email", user.getEmail());
             user1.put("Phone", user.getPhone());
 
-            fStore.collection("Users").document(fAuth.getCurrentUser().getUid()).set(user1).addOnSuccessListener(new OnSuccessListener<Void>() {
+            fStore.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(user1).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Log.d(TAG, "DocumentSnapshot successfully written!");

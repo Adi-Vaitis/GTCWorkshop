@@ -1,10 +1,12 @@
 package com.auto.gtcworkshop;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -16,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.auto.gtcworkshop.viewmodel.MainViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,31 +35,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         initializeLayout();
         setupNavigation();
         setupAuthentication();
-        logOut();
     }
 
     private void initializeLayout() {
         navigationDrawer = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
-
-        View header = navigationDrawer.getHeaderView(0);
     }
 
     private void setupNavigation() {
         navController = Navigation.findNavController(this, R.id.main_activity_fragment);
         setSupportActionBar(toolbar);
-        appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.accountFragment
 
-        ).setOpenableLayout(drawerLayout).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navi_contactus,
+                R.id.navi_reservations)
+                .setOpenableLayout(drawerLayout)
+                .build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationDrawer, navController);
@@ -84,9 +84,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void logOut() {
-        FirebaseAuth.getInstance().signOut();
-        navController.navigate(R.id.loginFragment);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navdraweritems, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
 }

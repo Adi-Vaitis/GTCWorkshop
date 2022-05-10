@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_loginFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -27,10 +30,40 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.auto.gtcworkshop.view.AccountFragment"
         android:label="AccountFragment"
         tools:layout="@layout/fragment_account"/>
+    <fragment
+        android:id="@+id/navi_services"
+        android:name="com.auto.gtcworkshop.view.ServicesFragment"
+        android:label="Services"
+        tools:layout="@layout/fragment_services">
+    </fragment>
+    <fragment
+        android:id="@+id/navi_stream"
+        android:name="com.auto.gtcworkshop.view.LiveStreamFragment"
+        android:label="LiveStream"
+        tools:layout="@layout/fragment_livestream"/>
+    <fragment
+        android:id="@+id/navi_logout"
+        android:name="com.auto.gtcworkshop.view.LogoutFragment"
+        android:label="ContactUs"
+        tools:layout="@layout/fragment_logout"/>
+    <fragment
+        android:id="@+id/navi_reservations"
+        android:name="com.auto.gtcworkshop.view.ReservationsFragment"
+        android:label="Reservations"
+        tools:layout="@layout/fragment_reservations"/>
+    <fragment
+        android:id="@+id/navi_contactus"
+        android:name="com.auto.gtcworkshop.view.ContactUsFragment"
+        android:label="ContactUs"
+        tools:layout="@layout/fragment_contact_us"/>
+
 </navigation>
