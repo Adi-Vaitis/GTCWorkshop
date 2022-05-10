@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -32,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         initializeLayout();
         setupNavigation();
@@ -85,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logOut() {
-        FirebaseAuth.getInstance().signOut();
-        navController.navigate(R.id.loginFragment);
+        navigationDrawer.getMenu().getItem(2).setOnMenuItemClickListener(e -> {
+            FirebaseAuth.getInstance().signOut();
+            navController.navigate(R.id.loginFragment);
+            return false;
+        });
     }
 
 }

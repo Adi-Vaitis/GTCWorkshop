@@ -40,6 +40,7 @@
                     android:icon="@drawable/ic_baseline_settings_24"
                     android:title="Account Settings" />
                 <item
+                    android:id="@+id/navi_logout"
                     android:icon="@drawable/ic_baseline_exit_to_app_24"
                     android:title="Log Out" />
             </group>
