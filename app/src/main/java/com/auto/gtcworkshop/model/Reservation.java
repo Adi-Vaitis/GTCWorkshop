@@ -13,11 +13,12 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String feel, String model, String problem, String millage) {
+    public Reservation(String feel, String model, String millage, String problem) {
         this.feel = feel;
         this.model = model;
-        this.problem = problem;
         this.millage = millage;
+        this.problem = problem;
+
     }
 
     public String getId() {

@@ -29,7 +29,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:title="@string/app_name"/>
+                app:title="@string/app_name"
+                />
 
             <fragment
                 android:id="@+id/main_activity_fragment"
@@ -41,9 +42,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="@+id/toolbar"
                 app:layout_constraintVertical_bias="0.0"
-                app:navGraph="@navigation/navi_map" />
+                app:navGraph="@navigation/navi_map"
+                tools:visibility="invisible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

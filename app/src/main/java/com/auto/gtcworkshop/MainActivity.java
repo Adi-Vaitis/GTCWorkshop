@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         initializeLayout();
         setupNavigation();
         setupAuthentication();
+
+
     }
 
     private void initializeLayout() {
@@ -51,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
     private void setupNavigation() {
         navController = Navigation.findNavController(this, R.id.main_activity_fragment);
         setSupportActionBar(toolbar);
+        viewModel.getCurrentFirebaseUser().observe(this, user -> {
+            if (user == null) {
+                navController.navigate(R.id.loginFragment);
+makeNavVisible(false);
+
+            }
+            else if (user !=null)
+            {
+                navController.navigate(R.id.navi_contactus);
+                makeNavVisible(true);
+            }
+
+        });
 
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navi_contactus,
@@ -62,11 +79,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationDrawer, navController);
     }
 
+
+
+
     private void setupAuthentication() {
         viewModel.getCurrentFirebaseUser().observe(this, user -> {
             if (user == null) {
                 navController.navigate(R.id.loginFragment);
+
+
             }
+
         });
     }
 
@@ -94,5 +117,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
+
+    public void makeNavVisible(boolean visible) {
+        if (visible) {
+           // navigationDrawer.setVisibility(View.VISIBLE);
+            drawerLayout.setVisibility(View.VISIBLE);
+            toolbar.setVisibility(View.VISIBLE);
+        } else {
+         //   navigationDrawer.setVisibility(View.INVISIBLE);
+          //  drawerLayout.setVisibility(View.INVISIBLE);
+            toolbar.removeAllViews();
+        }
+    }
+
+
+
+
+
+
 
 }
