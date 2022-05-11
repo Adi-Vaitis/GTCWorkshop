@@ -9,7 +9,7 @@ public class User {
     private String phone;
     private String email;
     private String password;
-    private List<Reservation> reservations;
+    private ArrayList<Reservation> reservations;
 
     public User() {
         reservations = new ArrayList<>();
@@ -28,7 +28,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String email, String password, String fullName, String phone, List<Reservation> reservations) {
+    public User(String email, String password, String fullName, String phone, ArrayList<Reservation> reservations) {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
@@ -56,7 +56,7 @@ public class User {
         return password;
     }
 
-    public List<Reservation> getReservations() {
+    public ArrayList<Reservation> getReservations() {
         return reservations;
     }
 
@@ -80,7 +80,7 @@ public class User {
         this.password = password;
     }
 
-    public void setReservations(List<Reservation> reservations) {
+    public void setReservations(ArrayList<Reservation> reservations) {
         this.reservations = reservations;
     }
 

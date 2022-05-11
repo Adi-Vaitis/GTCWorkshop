@@ -13,9 +13,6 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_navi_contactus"
             app:destination="@id/navi_contactus" />
     </fragment>
@@ -24,9 +21,6 @@
         android:name="com.auto.gtcworkshop.view.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_signUpFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
