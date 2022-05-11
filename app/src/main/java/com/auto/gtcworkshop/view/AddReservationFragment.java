@@ -11,15 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.Reservation;
 import com.auto.gtcworkshop.model.User;
+import com.auto.gtcworkshop.viewmodel.AddReservationViewModel;
 import com.auto.gtcworkshop.viewmodel.ReservationViewModel;
 
 public class AddReservationFragment extends Fragment {
-    private ReservationViewModel reservationViewModel;
+    private AddReservationViewModel addReservationViewModel;
     private NavController navController;
 
     TextView addReservationTitle;
@@ -31,11 +33,12 @@ public class AddReservationFragment extends Fragment {
     Button createReservationButton;
     Button cancelReservationButton;
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_reservation, container, false);
+        return inflater.inflate(R.layout.fragment_add_reservation, container, false);
+    }
 
+    public void initViews(View view){
         addReservationTitle = view.findViewById(R.id.addReservationsTitle);
         infoTitle = view.findViewById(R.id.infoTitle);
         feelTextView = view.findViewById(R.id.feelTextView);
@@ -44,16 +47,21 @@ public class AddReservationFragment extends Fragment {
         millageTextView = view.findViewById(R.id.millageTextView);
         createReservationButton = view.findViewById(R.id.createReservationButton);
         cancelReservationButton = view.findViewById(R.id.cancelReservationButton);
+    }
 
-        cancelReservationButton.setOnClickListener(view1 -> {
-                navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addReservationViewModel = new ViewModelProvider(getActivity()).get(AddReservationViewModel.class);
+        initViews(view);
+
+        createReservationButton.setOnClickListener(v -> {
+            addReservationViewModel.addReservation(feelTextView.getText().toString(), modelTextView.getText().toString(), problemTextView.getText().toString(), millageTextView.getText().toString());
+                navController.navigate(R.id.navi_reservations);
         });
 
-        createReservationButton.setOnClickListener(view2 -> {
-                reservationViewModel.addReservation(new Reservation(feelTextView.toString(), modelTextView.toString(), problemTextView.toString(), millageTextView.toString()), new User());
-                navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
+        cancelReservationButton.setOnClickListener(v -> {
+            navController.navigate(R.id.navi_reservations);
         });
-
-        return view;
     }
 }

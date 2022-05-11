@@ -5,13 +5,14 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 
+import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
+import com.auto.gtcworkshop.livedata.ReservationsLiveData;
 import com.auto.gtcworkshop.model.Reservation;
 import com.auto.gtcworkshop.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -19,10 +20,12 @@ import java.util.Map;
 
 public class ReservationRepository {
     private static ReservationRepository instance;
-    private AuthentificationRepository authentificationRepository;
+    private ReservationsLiveData reservationsLiveData;
     private User user = null;
 
     private FirebaseFirestore firebaseDatabase;
+    private final FirebaseUserLiveData currentFirebaseUser;
+
 
     public static ReservationRepository getInstance(){
         if(instance == null) instance = new ReservationRepository();
@@ -30,11 +33,11 @@ public class ReservationRepository {
     }
 
     public ReservationRepository(){
-        authentificationRepository = AuthentificationRepository.getInstance();
         firebaseDatabase = FirebaseFirestore.getInstance();
+        currentFirebaseUser = new FirebaseUserLiveData();
     }
 
-    public void addReservation(Reservation reservation, User user){
+    public void addReservation(Reservation reservation){
         Map<String, Object> reservationMap = new HashMap<>();
         if(reservation.getUserId() != null){
             reservationMap.put("userId", reservation.getUserId());
@@ -42,27 +45,32 @@ public class ReservationRepository {
             reservationMap.put("model", reservation.getModel());
             reservationMap.put("problem", reservation.getProblem());
             reservationMap.put("millage", reservation.getMillage());
-            int position = user.getReservations().size() - 1;
-            firebaseDatabase.collection("reservations").document(user.getFullName() + "[" + position + "]" + reservation.getUserId())
-                    .set(reservationMap)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Log.d(TAG, "Reservation added successfully!");
-                        }
-                    })
+
+            firebaseDatabase.collection("Reservations").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(reservationMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                }
+            })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding reservation", e);
+                            Log.w(TAG, "Error writing document", e);
                         }
                     });
         }
+
     }
 
-    public LiveData<FirebaseUser> getCurrentUser(){
-        return authentificationRepository.getCurrentFirebaseUser();
+    public void init(){
+        reservationsLiveData = new ReservationsLiveData(firebaseDatabase.collection("reservations").document(FirebaseAuth.getInstance().getCurrentUser().getUid()));
     }
+
+    public ReservationsLiveData getReservationsLiveData(){
+        return reservationsLiveData;
+    }
+
+
 
 
 }

@@ -94,4 +94,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
+
 }
