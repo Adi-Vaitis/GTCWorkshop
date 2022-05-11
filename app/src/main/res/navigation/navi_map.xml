@@ -7,14 +7,10 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.auto.gtcworkshop.view.LoginFragment"
-        android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
         <action
             android:id="@+id/action_loginFragment_to_navi_contactus"
             app:destination="@id/navi_contactus" />
@@ -22,11 +18,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.auto.gtcworkshop.view.SignUpFragment"
-        android:label="SignUpFragment"
         tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_signUpFragment_to_accountFragment"
-            app:destination="@id/accountFragment" />
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -37,33 +29,138 @@
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.auto.gtcworkshop.view.AccountFragment"
-        android:label="AccountFragment"
-        tools:layout="@layout/fragment_account"/>
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_accountFragment_to_navi_services"
+            app:destination="@id/navi_services" />
+        <action
+            android:id="@+id/action_accountFragment_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
+        <action
+            android:id="@+id/action_accountFragment_to_navi_reservations"
+            app:destination="@id/navi_reservations" />
+        <action
+            android:id="@+id/action_accountFragment_to_navi_stream"
+            app:destination="@id/navi_stream" />
+        <action
+            android:id="@+id/action_accountFragment_to_navi_logout"
+            app:destination="@id/navi_logout" />
+    </fragment>
     <fragment
         android:id="@+id/navi_services"
         android:name="com.auto.gtcworkshop.view.ServicesFragment"
-        android:label="Services"
         tools:layout="@layout/fragment_services">
+        <action
+            android:id="@+id/action_navi_services_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
+        <action
+            android:id="@+id/action_navi_services_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_services_to_navi_logout"
+            app:destination="@id/navi_logout" />
+        <action
+            android:id="@+id/action_navi_services_to_navi_contactus2"
+            app:destination="@id/navi_contactus" />
+        <action
+            android:id="@+id/action_navi_services_to_navi_reservations"
+            app:destination="@id/navi_reservations" />
+        <action
+            android:id="@+id/action_navi_services_to_navi_stream"
+            app:destination="@id/navi_stream" />
     </fragment>
     <fragment
         android:id="@+id/navi_stream"
         android:name="com.auto.gtcworkshop.view.LiveStreamFragment"
-        android:label="LiveStream"
-        tools:layout="@layout/fragment_livestream"/>
+        tools:layout="@layout/fragment_livestream">
+        <action
+            android:id="@+id/action_navi_stream_to_navi_reservations"
+            app:destination="@id/navi_reservations" />
+        <action
+            android:id="@+id/action_navi_stream_to_navi_logout"
+            app:destination="@id/navi_logout" />
+        <action
+            android:id="@+id/action_navi_stream_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_stream_to_navi_services"
+            app:destination="@id/navi_services" />
+        <action
+            android:id="@+id/action_navi_stream_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
+        <action
+            android:id="@+id/action_navi_stream_to_navi_reservations2"
+            app:destination="@id/navi_reservations" />
+        <action
+            android:id="@+id/action_navi_stream_to_navi_logout2"
+            app:destination="@id/navi_logout" />
+    </fragment>
     <fragment
         android:id="@+id/navi_logout"
         android:name="com.auto.gtcworkshop.view.LogoutFragment"
-        android:label="ContactUs"
         tools:layout="@layout/fragment_logout"/>
     <fragment
         android:id="@+id/navi_reservations"
         android:name="com.auto.gtcworkshop.view.ReservationsFragment"
-        android:label="Reservations"
-        tools:layout="@layout/fragment_reservations"/>
+        tools:layout="@layout/fragment_reservations">
+        <action
+            android:id="@+id/action_navi_reservations_to_navi_stream"
+            app:destination="@id/navi_stream" />
+        <action
+            android:id="@+id/action_navi_reservations_to_navi_logout"
+            app:destination="@id/navi_logout" />
+        <action
+            android:id="@+id/action_navi_reservations_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_reservations_to_accountFragment2"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_reservations_to_navi_contactus"
+            app:destination="@id/navi_contactus" />
+        <action
+            android:id="@+id/action_navi_reservations_to_navi_services"
+            app:destination="@id/navi_services" />
+        <action
+            android:id="@+id/action_navi_reservations_to_navi_add_reservations"
+            app:destination="@id/navi_add_reservations" />
+    </fragment>
     <fragment
         android:id="@+id/navi_contactus"
         android:name="com.auto.gtcworkshop.view.ContactUsFragment"
-        android:label="ContactUs"
-        tools:layout="@layout/fragment_contact_us"/>
+        tools:layout="@layout/fragment_contact_us">
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_services"
+            app:destination="@id/navi_services" />
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_stream"
+            app:destination="@id/navi_stream" />
+        <action
+            android:id="@+id/action_navi_contactus_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_reservations"
+            app:destination="@id/navi_reservations" />
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_logout"
+            app:destination="@id/navi_logout" />
+        <action
+            android:id="@+id/action_navi_contactus_to_accountFragment2"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_services2"
+            app:destination="@id/navi_services" />
+        <action
+            android:id="@+id/action_navi_contactus_to_navi_stream2"
+            app:destination="@id/navi_stream" />
+    </fragment>
+    <fragment
+        android:id="@+id/navi_add_reservations"
+        android:name="com.auto.gtcworkshop.view.AddReservationFragment"
+        tools:layout="@layout/fragment_add_reservation">
+        <action
+            android:id="@+id/action_navi_add_reservations_to_navi_reservations"
+            app:destination="@id/navi_reservations" />
+    </fragment>
 
 </navigation>

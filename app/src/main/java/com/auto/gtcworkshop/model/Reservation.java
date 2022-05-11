@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Reservation {
+    public String userId;
     private String id;
     private String feel;
     private String model;
@@ -18,6 +19,18 @@ public class Reservation {
         this.model = model;
         this.problem = problem;
         this.millage = millage;
+    }
+
+    public Reservation(String userId, String feel, String model, String problem, String millage) {
+        this.userId = userId;
+        this.feel = feel;
+        this.model = model;
+        this.problem = problem;
+        this.millage = millage;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getId() {
