@@ -2,7 +2,11 @@ package com.auto.gtcworkshop.repository;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -35,6 +39,8 @@ public class AuthentificationRepository {
     String userID;
 
     private final FirebaseUserLiveData currentFirebaseUser;
+    private MutableLiveData<String> authenticationMessage = new MutableLiveData<>("");
+    private MutableLiveData<Boolean> isEmailVerified = new MutableLiveData<>(false);
 
     private AuthentificationRepository() {
 
@@ -107,6 +113,48 @@ public class AuthentificationRepository {
     public LiveData<String> getErrorMessage() {
         return error;
     }
+
+
+    public void forgotPassword(View view) {
+        EditText resetEmail = new EditText(view.getContext());
+        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());
+        passwordResetDialog.setTitle("Reset password?");
+        passwordResetDialog.setMessage("Enter your email to reset the password");
+        passwordResetDialog.setView(resetEmail);
+
+        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                fAuth.sendPasswordResetEmail(resetEmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        authenticationMessage.postValue("Email sent!");
+                        Log.e(TAG, "Email sent!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        authenticationMessage.postValue("Error! Reset link is not sent!");
+                        Log.w(TAG, e.getMessage());
+                    }
+                });
+
+            }
+        });
+
+        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                authenticationMessage.postValue("Reset password cancelled.");
+            }
+        });
+
+        passwordResetDialog.create().show();
+    }
+
+
+
+
 }
 
 

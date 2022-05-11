@@ -1,5 +1,7 @@
 package com.auto.gtcworkshop.viewmodel;
 
+import android.view.View;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,6 +26,10 @@ public class LogInViewModel extends ViewModel {
 
     public void attemptLogin(User userLog) {
         repository.login(userLog);
+    }
+
+    public void forgotPassword(View view){
+        AuthentificationRepository.forgotPassword(view);
     }
 
 }

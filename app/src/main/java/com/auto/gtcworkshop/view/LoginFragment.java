@@ -32,7 +32,7 @@ public class LoginFragment extends Fragment {
     EditText lEmail, lPassword;
     Button lLoginBtn;
     ImageView lGoogleBtn, lFbBtn;
-    TextView lToCreate, forgotLink;
+    TextView lToCreate,forgotPasswordLogin;
     ProgressBar pBar;
     private LogInViewModel viewModel;
     private NavController navController;
@@ -59,6 +59,7 @@ public class LoginFragment extends Fragment {
         lLoginBtn = view.findViewById(R.id.loginbtn);
         pBar = view.findViewById(R.id.progressBar);
         lToCreate = view.findViewById(R.id.toRegister);
+        forgotPasswordLogin = view.findViewById(R.id.forgetpass);
     }
 
 
@@ -73,7 +74,26 @@ public class LoginFragment extends Fragment {
             navController.navigate(R.id.action_loginFragment_to_signUpFragment);
         });
 
+
+        forgotPasswordLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               viewModel.forgotPassword(view);
+            }
+        });
+
+
+
+
+
     }
+
+
+
+
+
+
+
 
 @Override
     public void onResume() {
@@ -88,6 +108,9 @@ public class LoginFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         ((DrawerLocker) getActivity()).setDrawerEnabled(false);
     }
+
+
+
 }
 
 
