@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ReservationViewModel extends ViewModel {
     private ReservationRepository reservationRepository;
 
+
     public ReservationViewModel(){
         reservationRepository = ReservationRepository.getInstance();
     }

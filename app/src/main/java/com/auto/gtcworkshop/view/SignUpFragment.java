@@ -62,10 +62,10 @@ public class SignUpFragment extends Fragment {
             viewModel.register(new User(rEmail.getText().toString(), rPassword.getText().toString(), rFullName.getText().toString(), rPhone.getText().toString()));
             navController.navigate(R.id.action_signUpFragment_to_navi_contactus);
             Toast.makeText(getActivity(), "Account registered successfully!", Toast.LENGTH_SHORT).show();
-            rToCreate.setOnClickListener(v -> {
-                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-            });
+        });
 
+        rToCreate.setOnClickListener(v -> {
+            navController.navigate(R.id.action_signUpFragment_to_loginFragment);
         });
     }
 
