@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -19,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auto.gtcworkshop.DrawerLocker;
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.LogInViewModel;
@@ -72,6 +74,21 @@ public class LoginFragment extends Fragment {
         });
 
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
+    }
+
 }
 
 

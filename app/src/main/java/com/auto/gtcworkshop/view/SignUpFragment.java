@@ -11,11 +11,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.auto.gtcworkshop.DrawerLocker;
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.SignUpViewModel;
@@ -69,11 +71,27 @@ public class SignUpFragment extends Fragment {
         });
     }
 
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
+
+
+
+    }
     @Override
     public void onStop() {
         super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         viewModel.reset();
+        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
     }
+
+
 }
 
 
