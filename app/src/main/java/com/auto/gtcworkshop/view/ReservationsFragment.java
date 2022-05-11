@@ -10,9 +10,12 @@ import androidx.fragment.app.Fragment;
 import com.auto.gtcworkshop.R;
 
 public class ReservationsFragment extends Fragment {
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         return inflater.inflate(R.layout.fragment_reservations, container, false);
     }

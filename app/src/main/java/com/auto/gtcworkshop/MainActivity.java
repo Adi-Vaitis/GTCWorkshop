@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         initializeLayout();
         setupNavigation();
         setupAuthentication();
+      //  actionBarVisibility();
     }
 
     private void initializeLayout() {
@@ -63,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getCurrentFirebaseUser().observe(this, user -> {
             if (user == null) {
                 navController.navigate(R.id.loginFragment);
+            }
+        });
+    }
+
+    private void actionBarVisibility(){
+        viewModel.getCurrentFirebaseUser().observe(this, user -> {
+            if (user == null) {
+                getSupportActionBar().hide();
             }
         });
     }
