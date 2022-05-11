@@ -28,10 +28,10 @@ public class LogInViewModel extends ViewModel {
         repository.login(userLog);
     }
 
-    public void forgotPassword(View view){
-        AuthentificationRepository.forgotPassword(view);
-    }
 
+    public void forgotPassword(View view) {
+        repository.forgotPassword(view);
+    }
 }
 
 

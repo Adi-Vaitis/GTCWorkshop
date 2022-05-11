@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.AccountFragment"
+    android:background="@drawable/fundal"
+    android:theme="@style/Theme.GTCWorkshop"
     >
 
     <Button

@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                 R.id.navi_contactus,
                 R.id.navi_reservations,
                 R.id.navi_services,
-                R.id.navi_stream)
+                R.id.navi_stream,
+        R.id.accountFragment)
                 .setOpenableLayout(drawerLayout)
                 .build();
 

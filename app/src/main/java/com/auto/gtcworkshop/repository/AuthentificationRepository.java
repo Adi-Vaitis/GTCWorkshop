@@ -11,10 +11,12 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
 import com.auto.gtcworkshop.livedata.UserLiveData;
 import com.auto.gtcworkshop.model.User;
+import com.auto.gtcworkshop.viewmodel.LogInViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,7 +118,9 @@ public class AuthentificationRepository {
 
 
     public void forgotPassword(View view) {
+
         EditText resetEmail = new EditText(view.getContext());
+        EditText resetEnail = new EditText(view.getContext());
         AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());
         passwordResetDialog.setTitle("Reset password?");
         passwordResetDialog.setMessage("Enter your email to reset the password");

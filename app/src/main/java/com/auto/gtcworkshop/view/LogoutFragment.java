@@ -21,4 +21,9 @@ public class LogoutFragment extends Fragment {
         Toast.makeText(getActivity(), "Logged Out", Toast.LENGTH_SHORT).show();
         return inflater.inflate(R.layout.fragment_logout, container, false);
     }
+
+
+
+
+
 }

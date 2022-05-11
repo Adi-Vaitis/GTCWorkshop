@@ -65,74 +65,46 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/paswword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@color/design_default_color_secondary"
-        android:text="LogIn"
         android:onClick="loginUser"
+        android:text="LogIn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paswword" />
-
-    <TextView
-
-        android:id="@+id/forgotpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginbtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="Forgot password?"
-        android:textColor="@color/white"
-        android:onClick="forgotPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/paswword"
+        app:layout_constraintVertical_bias="0.027" />
 
     <TextView
         android:id="@+id/preparetoRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forgetpass"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="52dp"
         android:text="Don't have an account? Register"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgetpass" />
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
 
     <TextView
         android:id="@+id/toRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forgetpass"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="12dp"
+        android:onClick="redirectToSignUp"
         android:text=" HERE"
         android:textColor="@color/design_default_color_secondary"
         android:textStyle="bold"
-        android:onClick="redirectToSignUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/preparetoRegister"
-        app:layout_constraintTop_toBottomOf="@+id/forgetpass" />
-
-    <ImageView
-
-        android:id="@+id/lfbbtn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/fblogo"
-        android:onClick="redirectToFacebookLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/socialother"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558" />
 
     <ImageView
         android:id="@+id/lgooglebtn"
@@ -141,14 +113,48 @@
         android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/googleicon"
         android:onClick="redirectToGoogleLogin"
+        android:src="@drawable/googleicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lfbbtn"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/socialother"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.045" />
+
+    <ImageView
+
+        android:id="@+id/lfbbtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:onClick="redirectToFacebookLogin"
+        android:src="@drawable/fblogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/socialother"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <TextView
+
+        android:id="@+id/forgotpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp"
+        android:onClick="forgotPassword"
+        android:text="Forgot password?"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn"
+        app:layout_constraintVertical_bias="0.026" />
 
     <TextView
         android:id="@+id/socialother"
@@ -161,20 +167,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_constraintVertical_bias="0.445" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preparetoRegister"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.782" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

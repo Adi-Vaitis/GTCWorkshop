@@ -33,13 +33,14 @@ public class LoginFragment extends Fragment {
     Button lLoginBtn;
     ImageView lGoogleBtn, lFbBtn;
     TextView lToCreate,forgotPasswordLogin;
-    ProgressBar pBar;
+
     private LogInViewModel viewModel;
     private NavController navController;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
+
     }
 
     @Override
@@ -51,23 +52,30 @@ public class LoginFragment extends Fragment {
 
         initializeViews(view);
         setupViews();
+
+
+
     }
 
     private void initializeViews(View view) {
         lEmail = view.findViewById(R.id.email);
         lPassword = view.findViewById(R.id.paswword);
         lLoginBtn = view.findViewById(R.id.loginbtn);
-        pBar = view.findViewById(R.id.progressBar);
+
         lToCreate = view.findViewById(R.id.toRegister);
-        forgotPasswordLogin = view.findViewById(R.id.forgetpass);
+        forgotPasswordLogin = view.findViewById(R.id.forgotpass);
+
+
     }
 
 
     private void setupViews() {
         lLoginBtn.setOnClickListener(v -> {
+
             viewModel.attemptLogin(new User(lEmail.getText().toString(), lPassword.getText().toString()));
             Toast.makeText(getActivity(), "Logged In", Toast.LENGTH_SHORT).show();
             navController.navigate(R.id.action_loginFragment_to_navi_contactus);
+
         });
 
         lToCreate.setOnClickListener(v -> {
@@ -75,14 +83,15 @@ public class LoginFragment extends Fragment {
         });
 
 
-        forgotPasswordLogin.setOnClickListener(new View.OnClickListener() {
+
+       /* forgotPasswordLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               viewModel.forgotPassword(view);
+                viewModel.forgotPassword(view);
+
             }
         });
-
-
+*/
 
 
 
