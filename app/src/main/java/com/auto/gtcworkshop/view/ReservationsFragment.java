@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.auto.gtcworkshop.R;
+import com.auto.gtcworkshop.model.ReservationAdapter;
 import com.auto.gtcworkshop.viewmodel.ReservationViewModel;
 
 public class ReservationsFragment extends Fragment {
@@ -51,9 +52,18 @@ public class ReservationsFragment extends Fragment {
             navController.navigate(R.id.action_navi_reservations_to_navi_add_reservations);
         });
 
+        viewModel.getReservationsLiveData().observe(getViewLifecycleOwner(), reservations -> {
+            ReservationAdapter adapter = new ReservationAdapter(reservations, getContext(), getActivity().getApplication());
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(adapter);
+        });
         recyclerView.hasFixedSize();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        loadReservations();
     }
 
+    public void loadReservations(){
+        viewModel.getReservations();
+    }
 }

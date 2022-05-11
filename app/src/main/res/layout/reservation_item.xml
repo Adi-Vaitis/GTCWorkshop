@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reservationItem">
+
+    <LinearLayout
+        android:id="@+id/idTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/feelItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#03A9F4"
+        android:textColorHint="#03A9F4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <TextView
+        android:id="@+id/modelItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#03A9F4"
+        android:textColorHint="#03A9F4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.23" />
+
+    <TextView
+        android:id="@+id/problemItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#03A9F4"
+        android:textColorHint="#03A9F4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.367" />
+
+    <TextView
+        android:id="@+id/millageItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#03A9F4"
+        android:textColorHint="#03A9F4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.678" />
+
+</RelativeLayout>

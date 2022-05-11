@@ -13,9 +13,7 @@ public class AddReservationViewModel extends ViewModel {
         reservationRepository = ReservationRepository.getInstance();
     }
 
-    public boolean addReservation(String feel, String model, String problem, String millage){
-        Reservation reservation = new Reservation(feel, model, problem, millage);
+    public void addReservation(Reservation reservation){
         reservationRepository.addReservation(reservation);
-        return true;
     }
 }
