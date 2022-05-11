@@ -13,12 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.auto.gtcworkshop.R;
-import com.auto.gtcworkshop.model.Reservation;
-import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.AddReservationViewModel;
-import com.auto.gtcworkshop.viewmodel.ReservationViewModel;
 
 public class AddReservationFragment extends Fragment {
     private AddReservationViewModel addReservationViewModel;
@@ -39,6 +37,7 @@ public class AddReservationFragment extends Fragment {
     }
 
     public void initViews(View view){
+        navController = Navigation.findNavController(view);
         addReservationTitle = view.findViewById(R.id.addReservationsTitle);
         infoTitle = view.findViewById(R.id.infoTitle);
         feelTextView = view.findViewById(R.id.feelTextView);
@@ -55,13 +54,13 @@ public class AddReservationFragment extends Fragment {
         addReservationViewModel = new ViewModelProvider(getActivity()).get(AddReservationViewModel.class);
         initViews(view);
 
-        createReservationButton.setOnClickListener(v -> {
-            addReservationViewModel.addReservation(feelTextView.getText().toString(), modelTextView.getText().toString(), problemTextView.getText().toString(), millageTextView.getText().toString());
-                navController.navigate(R.id.navi_reservations);
+        createReservationButton.setOnClickListener(v ->  {
+                addReservationViewModel.addReservation(feelTextView.getText().toString(), modelTextView.getText().toString(), problemTextView.getText().toString(), millageTextView.getText().toString());
+                navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
         });
 
-        cancelReservationButton.setOnClickListener(v -> {
-            navController.navigate(R.id.navi_reservations);
+        cancelReservationButton.setOnClickListener(v ->  {
+                navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
         });
     }
 }

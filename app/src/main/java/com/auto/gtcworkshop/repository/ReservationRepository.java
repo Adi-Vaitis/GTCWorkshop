@@ -21,7 +21,8 @@ import java.util.Map;
 public class ReservationRepository {
     private static ReservationRepository instance;
     private ReservationsLiveData reservationsLiveData;
-    private User user = null;
+
+
 
     private FirebaseFirestore firebaseDatabase;
     private final FirebaseUserLiveData currentFirebaseUser;
