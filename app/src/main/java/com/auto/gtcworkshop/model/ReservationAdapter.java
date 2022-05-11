@@ -14,34 +14,34 @@ import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
 import com.auto.gtcworkshop.repository.AuthentificationRepository;
 import com.auto.gtcworkshop.repository.ReservationRepository;
+import com.auto.gtcworkshop.viewmodel.ReservationViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
 
-    private final ArrayList<Reservation> reservationArrayList;
-    private Context context;
-    private AuthentificationRepository authentificationRepository;
-    private ReservationRepository reservationRepository;
+    private ArrayList<Reservation> reservationList;
+    private ReservationViewModel viewModel;
+    Context context;
 
-    public ReservationAdapter(ArrayList<Reservation> reservationArrayList, Context context, Application app) {
-        this.reservationArrayList = reservationArrayList;
+    public ReservationAdapter(ArrayList<Reservation> reservationList, ReservationViewModel viewModel, Context context) {
+        this.reservationList = reservationList;
+        this.viewModel = viewModel;
         this.context = context;
-        this.authentificationRepository = AuthentificationRepository.getInstance();
-        this.reservationRepository = ReservationRepository.getInstance();
     }
 
     @NonNull
     @Override
     public ReservationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reservation_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.reservation_item, parent, false);
 
-        return new ReservationAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReservationAdapter.ViewHolder holder, int position) {
-        Reservation reservation = reservationArrayList.get(position);
+        Reservation reservation = reservationList.get(position);
 
         holder.feelItem.setText(reservation.getFeel());
         holder.modelItem.setText(reservation.getModel());
@@ -51,9 +51,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public int getItemCount() {
-        return reservationArrayList.size();
+        return this.reservationList.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView feelItem;

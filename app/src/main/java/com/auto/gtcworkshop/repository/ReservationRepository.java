@@ -16,10 +16,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
@@ -38,6 +40,8 @@ public class ReservationRepository {
     private MutableLiveData<ArrayList<Reservation>> reservationLiveData = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<ArrayList<User>> userLiveData = new MutableLiveData<>(new ArrayList<>());
 
+    private Source source = Source.CACHE;
+
 
     public static ReservationRepository getInstance(){
         if(instance == null) instance = new ReservationRepository();
@@ -51,7 +55,7 @@ public class ReservationRepository {
 
     public void addReservation(Reservation reservation){
         Map<String, Object> reservationMap = new HashMap<>();
-          //  reservationMap.put("userId", reservation.getUserId());
+            reservationMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
             reservationMap.put("feel", reservation.getFeel());
             reservationMap.put("model", reservation.getModel());
             reservationMap.put("problem", reservation.getProblem());
@@ -72,22 +76,24 @@ public class ReservationRepository {
         }
 
     public void getReservations(){
-        DocumentReference documentReference = firebaseDatabase.collection("Reservations").document();
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    Reservation rez = task.getResult().toObject(Reservation.class);
-                } else {
-                    reservationLiveData.postValue(null);
-                    Log.e(TAG, task.getException().getMessage());
-                }
-            }
-        });
+        firebaseDatabase.collection("Reservations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public void init(){
-        reservationsLiveData = new ReservationsLiveData(firebaseDatabase.collection("reservations").document(FirebaseAuth.getInstance().getCurrentUser().getUid()));
+        reservationsLiveData = new ReservationsLiveData(firebaseDatabase.collection("Reservations").document(FirebaseAuth.getInstance().getCurrentUser().getUid()));
     }
 
     public ReservationsLiveData getReservationsLiveData(){
