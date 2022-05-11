@@ -5,11 +5,13 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import com.auto.gtcworkshop.model.Reservation;
 import com.auto.gtcworkshop.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -56,6 +58,10 @@ public class ReservationRepository {
                         }
                     });
         }
+    }
+
+    public LiveData<FirebaseUser> getCurrentUser(){
+        return authentificationRepository.getCurrentFirebaseUser();
     }
 
 
