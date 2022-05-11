@@ -25,6 +25,7 @@ public class LogInViewModel extends ViewModel {
     public void attemptLogin(User userLog) {
         repository.login(userLog);
     }
+
 }
 
 
