@@ -78,20 +78,13 @@ public class SignUpFragment extends Fragment {
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
-
-
-
     }
+
     @Override
     public void onStop() {
         super.onStop();
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        viewModel.reset();
-        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
     }
-
-
 }
 
 

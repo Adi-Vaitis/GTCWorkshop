@@ -75,20 +75,17 @@ public class LoginFragment extends Fragment {
 
     }
 
-
-    @Override
+@Override
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
     }
+
     @Override
     public void onStop() {
         super.onStop();
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        ((DrawerLocker) getActivity()).setDrawerEnabled(false);
     }
-
 }
 
 

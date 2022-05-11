@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.auto.gtcworkshop.livedata.ReservationsLiveData;
 import com.auto.gtcworkshop.model.Reservation;
 import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.repository.ReservationRepository;
@@ -18,11 +19,15 @@ public class ReservationViewModel extends ViewModel {
         reservationRepository = ReservationRepository.getInstance();
     }
 
-    public void addReservation(Reservation reservation, User user){
-        reservationRepository.addReservation(reservation, user);
+    public void addReservation(Reservation reservation){
+        reservationRepository.addReservation(reservation);
     }
 
-    public LiveData<FirebaseUser> getCurrentUser(){
-        return reservationRepository.getCurrentUser();
+    public void init(){
+        reservationRepository.init();
+    }
+
+    public ReservationsLiveData getReservationLiveData(){
+        return reservationRepository.getReservationsLiveData();
     }
 }

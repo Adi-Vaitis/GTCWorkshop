@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navi_contactus,
                 R.id.navi_reservations,
-                R.id.navi_add_reservations,
-                R.id.navi_services)
+                R.id.navi_services,
+                R.id.navi_stream)
                 .setOpenableLayout(drawerLayout)
                 .build();
 
@@ -118,24 +118,5 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     public boolean onOptionsItemSelected(MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
-
-
-
-    public void setDrawerEnabled(boolean enabled) {
-        int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED :
-                DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
-        drawerLayout.setDrawerLockMode(lockMode);
-
-    }
-
-
-
-
-    }
-
-
-
-
-
 
 
