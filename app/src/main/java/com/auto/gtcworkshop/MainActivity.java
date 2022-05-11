@@ -58,11 +58,9 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                 navController.navigate(R.id.loginFragment);
 //makeNavVisible(false);
 
-            }
-            else if (user !=null)
-            {
+            } else if (user != null) {
                 navController.navigate(R.id.navi_contactus);
-             //   makeNavVisible(true);
+                //   makeNavVisible(true);
             }
 
         });
@@ -79,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         NavigationUI.setupWithNavController(navigationDrawer, navController);
 
     }
-
-
 
 
     private void setupAuthentication() {
@@ -118,5 +114,14 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     public boolean onOptionsItemSelected(MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void setDrawerEnabled(boolean enabled) {
+        int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED :
+                DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
+        drawerLayout.setDrawerLockMode(lockMode);
+
+    }
+}
 
 
