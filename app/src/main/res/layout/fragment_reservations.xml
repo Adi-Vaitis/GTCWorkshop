@@ -6,28 +6,23 @@
     android:layout_height="match_parent"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:background="@drawable/fundal"
-    tools:context=".MainActivity"
+    tools:context=".view.ReservationsFragment"
     >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="?attr/actionBarSize"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="364dp" />
+        android:paddingBottom="?attr/actionBarSize" />
 
     <Button
+        android:id="@+id/addReservationMainButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_marginEnd="4dp"
         android:backgroundTint="@color/design_default_color_secondary"
         android:text="@string/add_booking"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
