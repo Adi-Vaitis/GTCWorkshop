@@ -55,25 +55,25 @@ public class ReservationRepository {
 
     public void addReservation(Reservation reservation){
         Map<String, Object> reservationMap = new HashMap<>();
-            reservationMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
-            reservationMap.put("feel", reservation.getFeel());
-            reservationMap.put("model", reservation.getModel());
-            reservationMap.put("problem", reservation.getProblem());
-            reservationMap.put("millage", reservation.getMillage());
+        reservationMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        reservationMap.put("feel", reservation.getFeel());
+        reservationMap.put("model", reservation.getModel());
+        reservationMap.put("problem", reservation.getProblem());
+        reservationMap.put("millage", reservation.getMillage());
 
-            firebaseDatabase.collection("Reservations").document().set(reservationMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
-                        }
-                    });
-        }
+        firebaseDatabase.collection("Reservations").document().set(reservationMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "DocumentSnapshot successfully written!");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
 
     public void getReservations(){
         firebaseDatabase.collection("Reservations")
