@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.Reservation;
-import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.AddReservationViewModel;
-import com.auto.gtcworkshop.viewmodel.ReservationViewModel;
 
 public class AddReservationFragment extends Fragment {
     private AddReservationViewModel addReservationViewModel;
@@ -38,7 +38,8 @@ public class AddReservationFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_reservation, container, false);
     }
 
-    public void initViews(View view){
+    public void initViews(View view) {
+        navController = Navigation.findNavController(view);
         addReservationTitle = view.findViewById(R.id.addReservationsTitle);
         infoTitle = view.findViewById(R.id.infoTitle);
         feelTextView = view.findViewById(R.id.feelTextView);
@@ -56,12 +57,13 @@ public class AddReservationFragment extends Fragment {
         initViews(view);
 
         createReservationButton.setOnClickListener(v -> {
-            addReservationViewModel.addReservation(feelTextView.getText().toString(), modelTextView.getText().toString(), problemTextView.getText().toString(), millageTextView.getText().toString());
-                navController.navigate(R.id.navi_reservations);
+            addReservationViewModel.addReservation(new Reservation(feelTextView.getText().toString(), modelTextView.getText().toString(), problemTextView.getText().toString(), millageTextView.getText().toString()));
+            navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
+            Toast.makeText(getActivity(), "Reservation added successfully!", Toast.LENGTH_SHORT).show();
         });
 
         cancelReservationButton.setOnClickListener(v -> {
-            navController.navigate(R.id.navi_reservations);
+            navController.navigate(R.id.action_navi_add_reservations_to_navi_reservations);
         });
     }
 }
