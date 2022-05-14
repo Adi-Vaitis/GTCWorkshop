@@ -9,7 +9,6 @@
             android:id="@+id/navi_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="Home"
-
             />
         <item
             android:id="@+id/navi_services"
@@ -40,7 +39,7 @@
                 android:id="@id/other"
                 android:checkableBehavior="single">
                 <item
-                    android:id="@+id/navi_accsettings"
+                    android:id="@+id/navi_acc"
                     android:icon="@drawable/ic_baseline_settings_24"
                     android:title="Account Settings" />
                 <item

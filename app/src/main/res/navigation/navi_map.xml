@@ -27,11 +27,6 @@
             app:destination="@id/navi_home" />
     </fragment>
     <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.auto.gtcworkshop.view.AccountFragment"
-        tools:layout="@layout/fragment_account">
-    </fragment>
-    <fragment
         android:id="@+id/navi_services"
         android:name="com.auto.gtcworkshop.view.ServicesFragment"
         tools:layout="@layout/fragment_services">
@@ -40,6 +35,11 @@
         android:id="@+id/navi_home"
         android:name="com.auto.gtcworkshop.view.HomeFragment"
         tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment
+        android:id="@+id/navi_acc"
+        android:name="com.auto.gtcworkshop.view.AccountFragment"
+        tools:layout="@layout/fragment_account">
     </fragment>
     <fragment
         android:id="@+id/navi_stream"
