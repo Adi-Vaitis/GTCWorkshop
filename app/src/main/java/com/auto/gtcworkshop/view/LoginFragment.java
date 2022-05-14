@@ -65,7 +65,7 @@ public class LoginFragment extends Fragment {
         lLoginBtn.setOnClickListener(v -> {
             viewModel.attemptLogin(new User(lEmail.getText().toString(), lPassword.getText().toString()));
             Toast.makeText(getActivity(), "Logged In", Toast.LENGTH_SHORT).show();
-            navController.navigate(R.id.action_loginFragment_to_navi_contactus);
+            navController.navigate(R.id.action_loginFragment_to_navi_home);
         });
 
         lToCreate.setOnClickListener(v -> {

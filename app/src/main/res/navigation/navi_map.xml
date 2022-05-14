@@ -12,8 +12,8 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_navi_contactus"
-            app:destination="@id/navi_contactus" />
+            android:id="@+id/action_loginFragment_to_navi_home"
+            app:destination="@id/navi_home" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -23,18 +23,23 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_signUpFragment_to_navi_contactus"
-            app:destination="@id/navi_contactus" />
-    </fragment>
-    <fragment
-        android:id="@+id/accountFragment"
-        android:name="com.auto.gtcworkshop.view.AccountFragment"
-        tools:layout="@layout/fragment_account">
+            android:id="@+id/action_signUpFragment_to_navi_home"
+            app:destination="@id/navi_home" />
     </fragment>
     <fragment
         android:id="@+id/navi_services"
         android:name="com.auto.gtcworkshop.view.ServicesFragment"
         tools:layout="@layout/fragment_services">
+    </fragment>
+    <fragment
+        android:id="@+id/navi_home"
+        android:name="com.auto.gtcworkshop.view.HomeFragment"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment
+        android:id="@+id/navi_acc"
+        android:name="com.auto.gtcworkshop.view.AccountFragment"
+        tools:layout="@layout/fragment_account">
     </fragment>
     <fragment
         android:id="@+id/navi_stream"

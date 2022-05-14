@@ -14,12 +14,11 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String feel, String model, String millage, String problem) {
+    public Reservation(String feel, String model, String problem, String millage) {
         this.feel = feel;
         this.model = model;
-        this.millage = millage;
         this.problem = problem;
-
+        this.millage = millage;
     }
 
     public Reservation(String userId, String feel, String model, String problem, String millage) {

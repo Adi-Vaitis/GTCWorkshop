@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navi_contactus,
                 R.id.navi_reservations,
+                R.id.navi_home,
+                R.id.navi_acc,
                 R.id.navi_services,
                 R.id.navi_stream)
                 .setOpenableLayout(drawerLayout)
