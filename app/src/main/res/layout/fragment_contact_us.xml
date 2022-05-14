@@ -84,6 +84,10 @@
         android:layout_height="wrap_content"
         android:text="gtc.workshop.dk@yahoo.com  "
         android:textColor="#2196F3"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="507dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
 </androidx.constraintlayout.widget.ConstraintLayout>
