@@ -17,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.auto.gtcworkshop.viewmodel.MainViewModel;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
@@ -83,17 +83,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navdraweritems, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
 
