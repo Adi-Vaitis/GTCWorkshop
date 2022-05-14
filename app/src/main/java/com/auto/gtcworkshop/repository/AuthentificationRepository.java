@@ -70,12 +70,12 @@ public class AuthentificationRepository {
                     Log.d(TAG, "DocumentSnapshot successfully written!");
                 }
             })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error writing document", e);
-                }
-            });
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document", e);
+                        }
+                    });
 
         }).addOnFailureListener(e -> {
             Log.i("Error user", e.getMessage());

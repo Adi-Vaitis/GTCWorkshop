@@ -10,20 +10,20 @@ import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
-        private AuthentificationRepository repository;
+    private AuthentificationRepository repository;
 
-        public MainViewModel() {
-            super();
-            repository = AuthentificationRepository.getInstance();
-        }
-
-        public LiveData<FirebaseUser> getCurrentFirebaseUser() {
-            return repository.getCurrentFirebaseUser();
-        }
-
-        public void logOut(){
-            repository.logOut();
-        }
-
+    public MainViewModel() {
+        super();
+        repository = AuthentificationRepository.getInstance();
     }
+
+    public LiveData<FirebaseUser> getCurrentFirebaseUser() {
+        return repository.getCurrentFirebaseUser();
+    }
+
+    public void logOut(){
+        repository.logOut();
+    }
+
+}
 
