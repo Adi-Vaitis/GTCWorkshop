@@ -9,13 +9,81 @@
     tools:context=".view.ContactUsFragment"
     >
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="338dp"
-        android:layout_height="185dp"
+
+    <TextView
+        android:id="@+id/addresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Addres:"
+        android:textColor="#2196F3"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.151" />
+
+    <TextView
+        android:id="@+id/addrestText"
+        android:layout_width="189dp"
+        android:layout_height="60dp"
+        android:text="8700 Horsens, Silkeborgvej 148 Danmark"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toEndOf="@+id/addresTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <TextView
+        android:id="@+id/callUsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Us:"
+        android:textColor="#2196F3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addresTextView"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <TextView
+        android:id="@+id/callUsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+45 50221377"
+        android:textColor="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toEndOf="@+id/callUsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/addrestText"
+        app:layout_constraintVertical_bias="0.287" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Us:"
+        android:textColor="#2196F3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callUsTextView"
+        app:layout_constraintVertical_bias="0.455" />
+
+    <TextView
+        android:id="@+id/emailContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gtc.workshop.dk@yahoo.com  "
+        android:textColor="#2196F3"
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="507dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
