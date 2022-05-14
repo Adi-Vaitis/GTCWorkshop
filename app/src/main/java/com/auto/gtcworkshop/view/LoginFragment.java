@@ -58,6 +58,9 @@ public class LoginFragment extends Fragment {
         lLoginBtn = view.findViewById(R.id.loginbtn);
         pBar = view.findViewById(R.id.progressBar);
         lToCreate = view.findViewById(R.id.toRegister);
+        forgotLink = view.findViewById(R.id.forgetpass);
+        lGoogleBtn = view.findViewById(R.id.lgooglebtn);
+        lFbBtn = view.findViewById(R.id.lfbbtn);
     }
 
 
@@ -72,6 +75,25 @@ public class LoginFragment extends Fragment {
             navController.navigate(R.id.action_loginFragment_to_signUpFragment);
         });
 
+        forgotLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Will be implemented in the future", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lGoogleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Will be implemented in the future", Toast.LENGTH_SHORT).show();
+            }
+        });
+        lFbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Will be implemented in the future", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
