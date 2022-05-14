@@ -20,7 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.auto.gtcworkshop.DrawerLocker;
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.LogInViewModel;
@@ -75,7 +74,7 @@ public class LoginFragment extends Fragment {
 
     }
 
-@Override
+    @Override
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
