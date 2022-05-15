@@ -61,3 +61,4 @@ As we are all passionate about cars the area of the app was easy to chose: vehic
 3. Recycler view problem: https://stackoverflow.com/questions/47348955/recyclerview-is-not-showing-all-items-in-the-list
 
 ##Youtube link for the video:
+https://www.youtube.com/watch?v=oW_TqwlVVow&t=9s
