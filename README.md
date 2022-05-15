@@ -39,11 +39,12 @@ As we are all passionate about cars the area of the app was easy to chose: vehic
 8. As a user I want to have a navigation tool, such that I could access the pages more easier.
 9. As a client, I want to be able to get redirected from the app to Google Maps so I can get to the workshop easier.
 10. As an administrator, I want to have a home page where clients can see our team.
+11. As a customer, I want to log in with social media accounts.
+
 
 
 ##Not implemented requirements
 1. As a user, I want to be able to change password.
-2. As a customer, I want to log in with social media accounts.
 3. As a user, I want to be able to change my information profile, such that, the service, could know about me.
 4. As a user, I want to see my payment history, such that I can have a proof of all receipts.
 5. As an administrator, I want to verify an user's account/email, such that I could be able to see if user is real or not.
