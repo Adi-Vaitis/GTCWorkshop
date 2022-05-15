@@ -58,5 +58,6 @@ As we are all passionate about cars the area of the app was easy to chose: vehic
 ##References
 1. Google Maps: https://developers.google.com/maps/documentation/android-sdk/start?hl=en_US#api-key
 2. Google SignIn: https://www.youtube.com/watch?v=bBJF1M5h_UU
+3. Recycler view problem: https://stackoverflow.com/questions/47348955/recyclerview-is-not-showing-all-items-in-the-list
 
 ##Youtube link for the video:
