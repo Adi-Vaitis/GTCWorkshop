@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "2968661888",
+    "project_id": "gtc-workshop-6be1a",
+    "storage_bucket": "gtc-workshop-6be1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2968661888:android:27e398060e2b1250aadb65",
+        "android_client_info": {
+          "package_name": "com.auto.gtcworkshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2968661888-9k7e2b7ggacl9170asp3kr9nvgh3q40k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.auto.gtcworkshop",
+            "certificate_hash": "cd77aa3763a38a34bbe3dac323ef15abf5edc24b"
+          }
+        },
+        {
+          "client_id": "2968661888-ee88nmkr0o10k5dtb1cgacvarsi3vjts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbqisiNos-zpmFabj500YOvJXWDsZlzxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2968661888-ee88nmkr0o10k5dtb1cgacvarsi3vjts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
