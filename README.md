@@ -54,3 +54,9 @@ As we are all passionate about cars the area of the app was easy to chose: vehic
 9. As an administrator I want to accept/cancel users reservations.
 10. As a user, I want to receive a receipt after completing my booking.
 11. As a user, I want to be able to pay using an online method, such that my transaction would be faster.
+
+##References
+1. Google Maps: https://developers.google.com/maps/documentation/android-sdk/start?hl=en_US#api-key
+2. Google SignIn: https://www.youtube.com/watch?v=bBJF1M5h_UU
+
+##Youtube link for the video:
