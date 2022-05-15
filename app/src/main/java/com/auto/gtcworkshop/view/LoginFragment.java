@@ -1,5 +1,6 @@
 package com.auto.gtcworkshop.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,11 +24,18 @@ import android.widget.Toast;
 import com.auto.gtcworkshop.R;
 import com.auto.gtcworkshop.model.User;
 import com.auto.gtcworkshop.viewmodel.LogInViewModel;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 public class LoginFragment extends Fragment {
 
     public static final int GOOGLE_SIGN_IN_CODE = 1005;
     public static final int REQUEST_CODE = 10005;
+    private GoogleSignInClient googleSignInClient;
     EditText lEmail, lPassword;
     Button lLoginBtn;
     ImageView lGoogleBtn, lFbBtn;
@@ -38,6 +46,8 @@ public class LoginFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        createRequestGoogle();
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -85,7 +95,8 @@ public class LoginFragment extends Fragment {
         lGoogleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Will be implemented in the future", Toast.LENGTH_SHORT).show();
+                logIn();
+                navController.navigate(R.id.action_loginFragment_to_navi_home);
             }
         });
         lFbBtn.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +105,44 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), "Will be implemented in the future", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GOOGLE_SIGN_IN_CODE)
+        {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            }
+            catch (ApiException e)
+            {
+                Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        viewModel.firebaseAuthWithGoogle(false,account,getActivity());
+    }
+
+    public void createRequestGoogle()
+    {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
+                requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id)).
+                requestEmail().
+                build();
+
+        googleSignInClient = GoogleSignIn.getClient(getContext(),gso);
+    }
+
+    private void logIn()
+    {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, GOOGLE_SIGN_IN_CODE);
     }
 
     @Override

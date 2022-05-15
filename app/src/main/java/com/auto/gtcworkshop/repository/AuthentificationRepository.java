@@ -5,16 +5,23 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.auto.gtcworkshop.livedata.FirebaseUserLiveData;
 import com.auto.gtcworkshop.livedata.UserLiveData;
 import com.auto.gtcworkshop.model.User;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,6 +38,7 @@ public class AuthentificationRepository {
     private final FirebaseAuth fAuth;
 
     private final MutableLiveData<String> error = new MutableLiveData<>("");
+    private MutableLiveData<String> authenticationMessage = new MutableLiveData<>("");
     private final FirebaseFirestore fStore;
     String userID;
 
@@ -91,6 +99,29 @@ public class AuthentificationRepository {
                     } else {
                         Log.i(TAG, "Error login!");
                         error.setValue("Invalid email/password combination");
+                    }
+                });
+    }
+
+    public void firebaseAuthWithGoogle(boolean isRegister, GoogleSignInAccount account, FragmentActivity activity) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        fAuth.signInWithCredential(credential).
+                addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful())
+                        {
+                            authenticationMessage.postValue("Registrations successful!");
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            if(user != null && isRegister)
+                            {
+                                register(new User(user.getUid(), user.getEmail()));
+                            }
+                        }
+                        else{
+                            authenticationMessage.postValue("Registration failed!");
+                            Log.e(TAG,"Google: " + task.getException());
+                        }
                     }
                 });
     }
